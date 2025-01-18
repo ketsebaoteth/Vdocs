@@ -1,4 +1,4 @@
-# VDocs
+# ![Group 3 (2)](https://github.com/user-attachments/assets/52fcc883-0364-42c7-b7bf-1efa9ea3131c) VDocs
 ## So Fast, It's Practically Magic. (Don't Tell Anyone 😁)
 
 VDocs is a tool for creating server-side rendered documentation sites directly from your project's documentation files. It is designed to be framework and language agnostic, making it suitable for a wide range of projects. VDocs utilizes Markdown (with MDX support) for content creation.
