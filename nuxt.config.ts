@@ -27,11 +27,28 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@nuxtjs/color-mode'
+  ],
 
   //tailwindcss nuxt plugin
   tailwindcss: {
     exposeConfig: true,
     viewer: true,
-  }
+  },
+
+  shadcn: {
+    /**
+     * Prefix for all the imported component
+     */
+    prefix: '',
+    /**
+     * Directory that the component lives in.
+     * @default "./components/ui"
+     */
+    componentDir: './components/ui'
+  },
+  css: ["./assets/css/global.css"]
 })
