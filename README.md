@@ -1,4 +1,5 @@
-# VDocs: So Fast, It's Practically Magic. (Don't Tell Anyone 😁)
+# VDocs
+## So Fast, It's Practically Magic. (Don't Tell Anyone 😁)
 
 VDocs is a tool for creating server-side rendered documentation sites directly from your project's documentation files. It is designed to be framework and language agnostic, making it suitable for a wide range of projects. VDocs utilizes Markdown (with MDX support) for content creation.
 
