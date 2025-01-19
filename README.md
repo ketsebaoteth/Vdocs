@@ -1,5 +1,6 @@
 # VDocs Documentation Sites With A Glitter Of Beauty
-<img src="https://github.com/user-attachments/assets/23096bd2-ba87-43f1-9555-45ddd7dde8fd" alt="description" width="100%">
+
+<img src="https://github.com/user-attachments/assets/1d2b281d-3149-4b33-937f-e43cabe65477" alt="description" width="100%">
 
 VDocs is a tool for creating server-side rendered documentation sites directly from your project's documentation files. It is designed to be framework and language agnostic, making it suitable for a wide range of projects. VDocs utilizes Markdown (with MDX support) for content creation.
 
