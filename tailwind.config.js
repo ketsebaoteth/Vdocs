@@ -24,6 +24,7 @@ module.exports = {
     extend: {
       fontFamily: {
         Inter: ["Inter", "sans-serif"],
+        Geist: ["Geist", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

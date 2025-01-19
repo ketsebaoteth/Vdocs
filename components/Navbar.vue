@@ -20,13 +20,18 @@ const props = defineProps({
     logoText : {
         type: String,
         default: "Vdocs"
-    }
+    },
 })
+
+
 </script>
 
 <template>
     <div class="navbar flex-place-center gap-3">
-        <h1 class="cursor-pointer">{{props.logoText}}</h1>
+        <div class="logo flex-place-center gap-1">
+            <img src="../assets/images/logo.svg" alt="">
+            <h1 class="cursor-pointer">{{props.logoText}}</h1>
+        </div>
         <NavbarSearchBar />
         <div class="links ml-auto flex-place-center gap-2">
             <NavbarLink text="Documentation" />
@@ -74,7 +79,7 @@ const props = defineProps({
         </TooltipProvider>
         
         <Separator />
-        <NavbarThemeToggle/>
+        <NavbarThemeToggle />
 
         <TooltipProvider>
             <Tooltip>
