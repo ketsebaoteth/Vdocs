@@ -1,9 +1,16 @@
 <script setup>
 import { Button } from '@/components/ui/button'
 import { IconArrowRight, IconArrowUpRight, IconCopy, IconTerminal2 } from '@tabler/icons-vue'
+import { Toaster, toast } from 'vue-sonner';
+
+const copyQuick = () => {
+    navigator.clipboard.writeText('npx create vdocs@latest')
+    toast.success('Copy to clipboard')
+}
 </script>
 <template>
     <div class="hero-size bg-transparent flex place-items-center justify-center">
+        <Toaster class="!transition-all" />
         <div class="flex flex-col items-center justify-center mt-[-56px] gap-5">
 
             <div class="relative cursor-pointer flex space-x-2 items-center z-10 rounded-full bg-neutral-100 dark:bg-neutral-800 py-1.5 px-4 ring-1 ring-white/10 ">
@@ -23,7 +30,7 @@ import { IconArrowRight, IconArrowUpRight, IconCopy, IconTerminal2 } from '@tabl
                 <div class="quick-copy code-block flex-place-center gap-2">
                     <IconTerminal2 class="text-muted-foreground"/>
                     <span class="font-mono">npx create vdocs@latest</span>
-                    <IconCopy class="text-muted-foreground size-4 cursor-pointer ml-5"/>
+                    <IconCopy @click="copyQuick" class="text-muted-foreground size-4 cursor-pointer ml-5"/>
                 </div>
             </div>
         </div>

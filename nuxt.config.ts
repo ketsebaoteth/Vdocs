@@ -2,15 +2,14 @@ import { defineNuxtConfig } from 'nuxt/config'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
-import { defineConfig } from 'vite'
-import mdx from '@mdx-js/rollup'
 import { resolve } from 'pathe'
+import { exec } from 'child_process'
+import mdx from '@mdx-js/rollup'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
-  //markdown importer
   vite: {
     plugins: [
       vueJsx(),
@@ -34,22 +33,31 @@ export default defineNuxtConfig({
     '@nuxt/fonts'
   ],
 
-  //tailwindcss nuxt plugin
   tailwindcss: {
     exposeConfig: true,
     viewer: true,
   },
 
   shadcn: {
-    /**
-     * Prefix for all the imported component
-     */
     prefix: '',
-    /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
-     */
     componentDir: './components/ui'
   },
-  css: ["./assets/css/global.css"]
+  css: ["./assets/css/global.css"],
+
+  hooks: {
+    'builder:watch': (event, path) => {
+      if (path.startsWith('public')) {
+        exec('node ./scripts/compile.js', (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Error executing compile script: ${error.message}`);
+            return;
+          }
+          if (stderr) {
+            console.error(`Compile script stderr: ${stderr}`);
+          }
+          console.log(`Compile script stdout: ${stdout}`);
+        });
+      }
+    }
+  },
 })

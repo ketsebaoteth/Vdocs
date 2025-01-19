@@ -1,0 +1,71 @@
+{
+  "isFolder": true,
+  "name": "docs",
+  "children": [
+    {
+      "isFolder": true,
+      "name": "@v1.0.0",
+      "children": [
+        {
+          "isFolder": true,
+          "name": "Configuration",
+          "children": []
+        },
+        {
+          "isFolder": true,
+          "name": "Examples",
+          "children": [
+            {
+              "isFolder": false,
+              "name": "Components.mdx",
+              "path": "@v1.0.0/Examples/Components.mdx"
+            }
+          ]
+        },
+        {
+          "isFolder": true,
+          "name": "Getting Started",
+          "children": [
+            {
+              "isFolder": false,
+              "name": "installation.mdx",
+              "path": "@v1.0.0/Getting Started/installation.mdx"
+            }
+          ]
+        },
+        {
+          "isFolder": true,
+          "name": "Installation",
+          "children": [
+            {
+              "isFolder": false,
+              "name": "install.mdx",
+              "path": "@v1.0.0/Installation/install.mdx"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isFolder": true,
+      "name": "@v1.2.0",
+      "children": [
+        {
+          "isFolder": true,
+          "name": "Getting Started",
+          "children": []
+        },
+        {
+          "isFolder": true,
+          "name": "Installation",
+          "children": []
+        }
+      ]
+    },
+    {
+      "isFolder": true,
+      "name": "@v1.3.0",
+      "children": []
+    }
+  ]
+}

@@ -28,18 +28,22 @@ const props = defineProps({
 <template>
     <div class="link flex-place-center">
         <div v-if="!props.hasDropdown">
+            <NuxtLink :to="props.route">
             <span>
                 {{props.text}}
             </span>
             <IconChevronDown v-if="props.hasDropdown" class="size-3"/>
+            </NuxtLink>
         </div>
         <div v-if="props.hasDropdown">
             <DropdownMenu>
-                <DropdownMenuTrigger class="flex-place-center gap-1">
+                <DropdownMenuTrigger >
+                    <NuxtLink :to="props.route" class="flex-place-center gap-1">
                     <span>
                         {{props.text}}
                     </span>
                     <IconChevronDown v-if="props.hasDropdown" class="size-3"/>
+                    </NuxtLink>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent class="w-44">
                   <slot />

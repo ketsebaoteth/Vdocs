@@ -88,7 +88,7 @@
 }
 
 * {
-  transition-property: background-color, border-color !important;
-  transition-duration: 0.5s !important;
-  transition-timing-function: ease !important;
+  transition-property: background-color, border-color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
 }

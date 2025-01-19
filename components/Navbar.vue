@@ -34,7 +34,7 @@ const props = defineProps({
         </div>
         <NavbarSearchBar />
         <div class="links ml-auto flex-place-center gap-2">
-            <NavbarLink text="Documentation" />
+            <NavbarLink text="Documentation" route="/docs" />
             <NavbarLink text="Blog" />
             <NavbarLink text="ChangeLogs" />
             <NavbarLink text="About" :has-dropdown="true" >
@@ -101,7 +101,7 @@ const props = defineProps({
 
 <style scoped>
 .navbar{
-    @apply w-screen h-14 bg-background border-b border-border px-8;
+    @apply w-screen h-14 bg-background sticky top-0 border-b border-border px-8 z-50;
 }
 
 </style>
