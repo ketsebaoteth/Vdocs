@@ -15,6 +15,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { IconArrowUpRight, IconBrandDiscord, IconBrandTwitter, IconLanguage } from '@tabler/icons-vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps({
     logoText : {
@@ -23,12 +26,11 @@ const props = defineProps({
     },
 })
 
-
 </script>
 
 <template>
     <div class="navbar flex-place-center gap-3">
-        <div class="logo flex-place-center gap-1">
+        <div @click="router.push('/')" class="logo flex-place-center gap-1">
             <img src="../assets/images/logo.svg" alt="">
             <h1 class="cursor-pointer">{{props.logoText}}</h1>
         </div>
@@ -84,7 +86,7 @@ const props = defineProps({
         <TooltipProvider>
             <Tooltip>
               <TooltipTrigger >
-                    <NavbarGithub />
+                    <NavbarGithub :githubLink="'vercel/next.js'" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Github</p>

@@ -11,6 +11,8 @@ import TabbedCodeBlock from '../DocsBlocks/TabbedCodeBlock.vue';
 
 const mdxContent = ref(null);
 
+
+//replace some of the default components with custom components
 function wrapWithProvider(mdxDefaultExport) {
 
   const components = {
@@ -32,9 +34,10 @@ function wrapWithProvider(mdxDefaultExport) {
   })
 }
 
-
+// Load the MDX file from the selected docs page
 const loadMDX = async (componentPath) => {
   try {
+    //dynamic import the selected docs page
     const module = await import(`../../public/docs/${componentPath}`)
     mdxContent.value = wrapWithProvider(module.default);
   } catch (error) {
@@ -43,6 +46,7 @@ const loadMDX = async (componentPath) => {
   }
 };
 
+//checks changes for the selected docs page
 watch(() => docsStates.value.selectedDoc, (newVal) => {
   console.log(newVal);
   if(newVal){

@@ -1,3 +1,4 @@
+<!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/Docs/Sidebar.vue -->
 <script setup>
 import {
   Select,
@@ -15,9 +16,20 @@ import { versions } from '../../state';
 
 let selectedVersion = ref(docsStructure.children[0]?.name || "");
 
+const sortByOrder = (a, b) => a.order - b.order;
 
 const filteredTopics = computed(() => {
-  return docsStructure.children.find(topic => topic.name === selectedVersion.value)?.children || [];
+  const selectedTopic = docsStructure.children.find(topic => topic.name === selectedVersion.value);
+  if (!selectedTopic) return [];
+  
+  const sortedTopics = selectedTopic.children.sort(sortByOrder);
+  sortedTopics.reverse();
+  sortedTopics.forEach(topic => {
+    if (topic.children) {
+      topic.children.sort(sortByOrder);
+    }
+  });
+  return sortedTopics;
 });
 
 const setSelectedDoc = (path, componentSrc) => {

@@ -7,11 +7,15 @@ const props = defineProps({
         default: "[Warning]: No Announcement Message Set this is a fallback"
     }
 })
+
+const closeAnnouncements = ()=>{
+    document.querySelector('.bannergradient').style.height = "0px"
+}
 </script>
 <template>
-    <div class="bannergradient w-screen h-7 flex-place-center justify-center text-white">
+    <div class="bannergradient transition-all w-screen h-7 flex-place-center justify-center text-white">
         <p class="text-sm">{{props.msg}}</p>
-        <IconX stroke="4" class="size-5 cursor-pointer absolute ml-auto right-3"/>
+        <IconX @click="closeAnnouncements" stroke="4" class="size-5 cursor-pointer absolute ml-auto right-3"/>
     </div>
 </template>
 

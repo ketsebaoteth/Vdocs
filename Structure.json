@@ -1,18 +1,22 @@
 {
   "isFolder": true,
   "name": "docs",
+  "order": 0,
   "children": [
     {
       "isFolder": true,
       "name": "@v1.0.0",
+      "order": 0,
       "children": [
         {
           "isFolder": true,
           "name": "Configuration",
+          "order": 0,
           "children": [
             {
               "isFolder": false,
               "name": "Themeing.mdx",
+              "order": 0,
               "path": "@v1.0.0/Configuration/Themeing.mdx"
             }
           ]
@@ -20,10 +24,12 @@
         {
           "isFolder": true,
           "name": "Examples",
+          "order": 0,
           "children": [
             {
               "isFolder": false,
               "name": "Components.mdx",
+              "order": 0,
               "path": "@v1.0.0/Examples/Components.mdx"
             }
           ]
@@ -31,25 +37,30 @@
         {
           "isFolder": true,
           "name": "Getting Started",
+          "order": 0,
           "children": [
             {
               "isFolder": false,
               "name": "Basic Themeing.mdx",
+              "order": 0,
               "path": "@v1.0.0/Getting Started/Basic Themeing.mdx"
             },
             {
               "isFolder": false,
               "name": "configuration.mdx",
+              "order": 0,
               "path": "@v1.0.0/Getting Started/configuration.mdx"
             },
             {
               "isFolder": false,
               "name": "Folder Structure.mdx",
+              "order": 0,
               "path": "@v1.0.0/Getting Started/Folder Structure.mdx"
             },
             {
               "isFolder": false,
               "name": "installation.mdx",
+              "order": 0,
               "path": "@v1.0.0/Getting Started/installation.mdx"
             }
           ]
@@ -57,10 +68,12 @@
         {
           "isFolder": true,
           "name": "Installation",
+          "order": 0,
           "children": [
             {
               "isFolder": false,
               "name": "install.mdx",
+              "order": 0,
               "path": "@v1.0.0/Installation/install.mdx"
             }
           ]
@@ -70,15 +83,18 @@
     {
       "isFolder": true,
       "name": "@v1.2.0",
+      "order": 0,
       "children": [
         {
           "isFolder": true,
           "name": "Getting Started",
+          "order": 0,
           "children": []
         },
         {
           "isFolder": true,
           "name": "Installation",
+          "order": 0,
           "children": []
         }
       ]
@@ -86,6 +102,7 @@
     {
       "isFolder": true,
       "name": "@v1.3.0",
+      "order": 0,
       "children": []
     }
   ]
