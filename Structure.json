@@ -9,7 +9,13 @@
         {
           "isFolder": true,
           "name": "Configuration",
-          "children": []
+          "children": [
+            {
+              "isFolder": false,
+              "name": "Themeing.mdx",
+              "path": "@v1.0.0/Configuration/Themeing.mdx"
+            }
+          ]
         },
         {
           "isFolder": true,
@@ -26,6 +32,21 @@
           "isFolder": true,
           "name": "Getting Started",
           "children": [
+            {
+              "isFolder": false,
+              "name": "Basic Themeing.mdx",
+              "path": "@v1.0.0/Getting Started/Basic Themeing.mdx"
+            },
+            {
+              "isFolder": false,
+              "name": "configuration.mdx",
+              "path": "@v1.0.0/Getting Started/configuration.mdx"
+            },
+            {
+              "isFolder": false,
+              "name": "Folder Structure.mdx",
+              "path": "@v1.0.0/Getting Started/Folder Structure.mdx"
+            },
             {
               "isFolder": false,
               "name": "installation.mdx",

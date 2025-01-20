@@ -24,13 +24,17 @@ const setSelectedDoc = (path, componentSrc) => {
   docsStates.value.selectedDoc = path;
   docsStates.value.selectedComponentSrc = componentSrc;
 };
+
+const removeExtension = (filename) => {
+  return filename.split('.').slice(0, -1).join('.');
+};
 </script>
 
 <template>
   <div class="sidebar flex flex-col gap-2 place-items-center">
     <DocsSidebarSearch />
     <Select v-model="selectedVersion">
-      <SelectTrigger>
+      <SelectTrigger class="h-8">
         <SelectValue placeholder="Select Version" />
       </SelectTrigger>
       <SelectContent>
@@ -48,8 +52,8 @@ const setSelectedDoc = (path, componentSrc) => {
       <div class="main w-full flex flex-col justify-start" v-for="(subtopic, subindex) in filteredTopics" :key="subindex">
         <div class="subtopics">
           <p class="subtopic" v-if="subtopic.isFolder">{{ subtopic.name }}</p>
-          <div class="files" v-for="(file, fileindex) in subtopic.children" :key="fileindex">
-            <p class="filename" @click="setSelectedDoc(file.path, file.componentSrc)">{{file.name}}</p>
+          <div class="files" v-for="(file, fileindex) in subtopic.children" :key="fileindex" :class="{'bg-secondary': docsStates.selectedDoc === file.path}">
+            <p class="filename" @click="setSelectedDoc(file.path, file.componentSrc)">{{removeExtension(file.name)}}</p>
           </div>
         </div>
       </div>
@@ -59,13 +63,13 @@ const setSelectedDoc = (path, componentSrc) => {
 
 <style scoped>
 .sidebar {
-  @apply w-64 h-screen p-5 bg-background border-r border-border;
+  @apply w-80 h-full p-5 bg-background;
 }
 .subtopic{
-  @apply text-foreground;
+  @apply text-foreground py-1;
 }
 .files{
-  @apply flex flex-col gap-2;
+  @apply flex flex-col gap-2 h-8 my-1 flex justify-center  rounded-lg;
 }
 .filename{
   @apply text-sm text-muted-foreground ml-5 cursor-pointer;

@@ -8,3 +8,10 @@ this components can be used in your markdown files and are provided by VDocs.
   { "name": "NPM", "command": "npx create vdocs@latest" },
   { "name": "Bun", "command": "bun init vdocs@latest" }
 ]' />
+
+tabbed code blocks can be used to create a code block that contains different tabs as has been showed in the above Example. You can use the following syntax to createa tabbed code block in your mdx files.
+
+<Codeblock lang="vue" 
+content='
+<TabbedCodeBlock  tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; } ]" />' />
+this component takes a prop tabs which is an array of objects that contains the name of the tab and the content of the tab and creates a tabbed code block.

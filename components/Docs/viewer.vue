@@ -55,11 +55,15 @@ watch(() => docsStates.value.selectedDoc, (newVal) => {
   <div class="mdx_display">
     <component :is="mdxContent" v-if="mdxContent" />
     <p v-else>No document selected or failed to load.</p>
+    <div class="flex gap-2 my-5">
+      <DocsPrePage prePage="prepage" />
+      <DocsNextPage nextPage="nextpage" />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .mdx_display {
-  @apply p-5 pl-10 w-[80%] h-full text-foreground;
+  @apply p-5 pl-10 w-[75%] h-full text-foreground max-w-[800px];
 }
 </style>
