@@ -12,7 +12,7 @@
   <style>
   .table-cont {
     /* Apply borders and rounded corners */
-    @apply border border-gray-300 rounded-md;
+    @apply border border-border rounded-md;
   
     /* Ensure the table takes the full width of its container */
     width: 100%;
@@ -26,7 +26,7 @@
   
   /* Style table headers */
   .table-cont th {
-    @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left;
+    @apply bg-muted border border-border px-4 py-2 text-left;
   
     /* Ensure headers take equal width */
     width: 1%;
@@ -35,7 +35,7 @@
   
   /* Style table data cells */
   .table-cont td {
-    @apply border border-gray-300 px-4 py-2;
+    @apply border border-border px-4 py-2;
   
     /* Ensure cells take equal width */
     width: 1%;
@@ -44,13 +44,13 @@
   
   /* Optional: Zebra striping for better readability */
   .table-cont tbody tr:nth-child(even) {
-    @apply bg-gray-50;
+    @apply bg-muted;
   }
 
   
   /* Optional: Hover effect for rows */
   .table-cont tbody tr:hover {
-    @apply bg-gray-200;
+    @apply bg-muted;
   }
   
   /* Remove right border from the last header and data cells to prevent double borders */

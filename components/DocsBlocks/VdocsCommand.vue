@@ -15,7 +15,9 @@ const copyQuick = () => {
             <IconCopy class="size-4" />
         </Button>
         <p>
-            <slot />
+            <pre class="overflow-x-auto">
+<slot />
+            </pre>
         </p>
     </div>
 </template>

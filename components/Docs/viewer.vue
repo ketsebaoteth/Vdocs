@@ -12,6 +12,7 @@ import TabbedCodeBlock from '../DocsBlocks/TabbedCodeBlock.vue';
 import Callout from '../DocsBlocks/Callout.vue';
 import HorizontalRule from '../DocsBlocks/HorizontalRule.vue';
 import Table from '../DocsBlocks/table.vue';
+import 'highlight.js/styles/monokai.css';
 
 const mdxContent = ref(null);
 

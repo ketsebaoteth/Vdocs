@@ -65,7 +65,7 @@ const removeExtension = (filename) => {
         <div class="subtopics">
           <p class="subtopic" v-if="subtopic.isFolder">{{ subtopic.name }}</p>
           <div class="files" v-for="(file, fileindex) in subtopic.children" :key="fileindex" :class="{'bg-secondary': docsStates.selectedDoc === file.path}">
-            <p class="filename" @click="setSelectedDoc(file.path, file.componentSrc)">{{removeExtension(file.name)}}</p>
+            <p class="filename" :class="{'!text-primary': docsStates.selectedDoc === file.path}" @click="setSelectedDoc(file.path, file.componentSrc)">{{removeExtension(file.name)}}</p>
           </div>
         </div>
       </div>

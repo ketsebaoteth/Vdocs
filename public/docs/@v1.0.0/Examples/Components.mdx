@@ -1,8 +1,11 @@
+
 # VDocs Components
 
-this components can be used in your markdown files and are provided by VDocs.
+VDocs provides a suite of custom components that enhance the functionality and visual appeal of your documentation written in MDX. These components are designed for seamless integration and ease of use.
 
-## Tabbed Codeblock
+## Tabbed Code Blocks
+
+The `<TabbedCodeBlock>` component enables you to display code snippets within interactive tabs, improving organization and clarity. This is particularly useful when demonstrating the same task across multiple platforms or environments.
 
 <TabbedCodeBlock tabs='[
   { "name": "NPM", "command": "npx create vdocs@latest" },
@@ -10,50 +13,146 @@ this components can be used in your markdown files and are provided by VDocs.
   { "name": "Yarn", "command": "yarn create vdocs@latest" }
 ]' />
 
-tabbed code blocks can be used to create a code block that contains different tabs as has been showed in the above Example. You can use the following syntax to createa tabbed code block in your mdx files.
+**Usage:**
 
-<Codeblock lang="vue" 
+The `<TabbedCodeBlock>` component accepts a `tabs` prop which is an array of objects. Each object defines the properties of the tab such as the name and the command.
+
+**MDX Syntax Example:**
+
+<Codeblock lang="markdown" content=" 
+## normal markdown like this then
+
+<TabbedCodeBlock tabs='[
+  { 'name': 'NPM', 'command': 'npx create vdocs@latest' },
+  { 'name': 'Bun', 'command': 'bun init vdocs@latest' },
+  { 'name': 'Yarn', 'command': 'yarn create vdocs@latest' }
+]' />
+ "/>
+
+This translates to the following Vue component syntax:
+
+<Codeblock lang="vue"
 content='
-<TabbedCodeBlock  tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; } ]" />' />
-this component takes a prop tabs which is an array of objects that contains the name of the tab and the content of the tab and creates a tabbed code block.
+<TabbedCodeBlock tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; }, { &quot;name&quot;: &quot;Yarn&quot;, &quot;command&quot;: &quot;yarn create vdocs@latest&quot; } ]" />
+'/>
 
 ---
 
-## Callout
-Vdocs provides a callout component that can be used to create a nice looking callout in your markdown files. A **Callout** looks something like this
+## Callouts
 
-<Callout type="error" header="This is a error message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+The `<Callout>` component is used to draw attention to specific information within your documentation, such as important notes, warnings, errors, or success messages. Callouts provide a visually distinct way to highlight key points.
 
-you can adjust the type of callout using the type prop in the vue component. The type prop can be one of the following values: `info`, `warning`, `error`, `success`. The default value of the type prop is `info`.
-Other props that can be used with the callout component are:
-- header: The header of the callout
-- content: The content of the callout
+A typical **Callout** looks like this:
 
-the other types of callout include:
+<Callout type="error" header="This is an error message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
 
-<Callout type="info" header="This is a info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+**Types of Callouts:**
 
-<Callout type="warning" header="This is a info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+The `type` prop determines the visual styling and semantic meaning of the callout. Supported values include:
 
-<Callout type="success" header="This is a info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+*   `info`: Used for general informational notes (Default).
+*   `warning`: Indicates a potential issue or caution.
+*   `error`: Highlights critical errors or problems.
+*   `success`: Signals a successful operation or positive outcome.
 
-## Table
+**Other Available Props:**
 
-Vdocs provides a table component that can be used to create a table in your markdown files. A **Table** looks something like this
+*   `header`: Sets the title/heading of the callout.
+*   `content`: Contains the main body text of the callout.
+
+**Examples:**
+
+<Callout type="info" header="This is an info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+<Callout type="warning" header="This is a warning message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+<Callout type="success" header="This is a success message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+**MDX Syntax Example:**
+
+<Codeblock lang="markdown"
+content='<Callout type="warning" header="Heads Up!" content="Always double-check your configuration settings before deploying." />' />
+
+This is equivalent to the following vue component markup:
+
+<Codeblock lang="vue"
+content='
+<Callout type="info" header="This is an info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />' />
+
+---
+
+## Tables
+
+VDocs supports the standard Markdown table syntax, rendering them as styled and accessible HTML tables. This allows you to present structured data effectively.
+
+A basic **Table** looks like this:
 
 | Column 1      | Column 2      |
 | ------------- | ------------- |
 | Cell 1, Row 1 | Cell 2, Row 1 |
-| Cell 1, Row 2 | Cell 1, Row 2 |
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |
 
-Note that the table component is not its own component and dosent have a vuejs syntax it is a normal markdown table. then when parsing it will be converted to a table component.
+**Markdown Table Syntax:**
 
-the syntax to create a table in markdown is as follows:
+The syntax for creating a table in Markdown involves using pipes (`|`) to separate columns and hyphens (`-`) to create a header row separator:
 
-<Codeblock lang="markdown" 
+```markdown
+| Column 1      | Column 2      |
+| ------------- | ------------- |
+| Cell 1, Row 1 | Cell 2, Row 1 |
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |
+```
+
+This is translated into the following:
+
+<Codeblock lang="markdown"
 content='| Column 1      | Column 2      |
 | ------------- | ------------- |
 | Cell 1, Row 1 | Cell 2, Row 1 |
-| Cell 1, Row 2 | Cell 1, Row 2 |'
-/>
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |' />
+
+Note that VDocs will automatically recognize and style markdown table syntax.
+
+---
+
+## Example Usage
+
+This section demonstrates how to use these components together to create a cohesive and informative page in MDX.
+
+```md
+# Example Usage
+
+<TabbedCodeBlock tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; }, { &quot;name&quot;: &quot;Yarn&quot;, &quot;command&quot;: &quot;yarn create vdocs@latest&quot; } ]" />
+
+<Callout type="info" header="Important Note" content="Remember to install all required dependencies before running the application." />
+
+| Feature        | Status    |
+|----------------|-----------|
+| Tabbed Code Blocks | Stable  |
+| Callouts       | Stable  |
+| Tables          | Stable  |
+```
+
+This can be rendered with VDocs by writing the following code:
+
+<Codeblock lang="markdown"
+content='
+# Example Usage
+
+<TabbedCodeBlock tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; }, { &quot;name&quot;: &quot;Yarn&quot;, &quot;command&quot;: &quot;yarn create vdocs@latest&quot; } ]" />
+
+<Callout type="info" header="This is an info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+| Column 1      | Column 2      |
+| ------------- | ------------- |
+| Cell 1, Row 1 | Cell 2, Row 1 |
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |' />
 

@@ -153,25 +153,24 @@
   /* Indicator Bar Styling */
   .indicator {
     width: 4px; /* Adjust the width as needed */
-    background-color: var(--primary-color, #3490dc); /* Customize your primary color */
+    @apply bg-primary;
     border-radius: 2px;
-    transition: top 0.3s ease, height 0.3s ease;
+    transition: top 0.3s ease-in-out, height 0.3s ease-in-out;
   }
   
   /* Highlight the active heading link */
   .active-link a {
-    color: var(--primary-color, #3490dc); /* Customize active link color */
-    font-weight: bold;
+    @apply text-primary font-semibold;
   }
   
   /* Optional: Enhance the appearance of links */
   a {
-    color: var(--text-color, #4a5568);
+    @apply text-muted-foreground text-sm;
     text-decoration: none;
     transition: color 0.3s;
   }
   
   a:hover {
-    color: var(--primary-color, #3490dc);
+    @apply text-primary;
   }
   </style>
