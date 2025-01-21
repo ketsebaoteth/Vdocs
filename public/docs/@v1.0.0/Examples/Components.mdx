@@ -156,3 +156,48 @@ content='
 | Cell 1, Row 3 | Cell 2, Row 3 |
 | Cell 1, Row 4 | Cell 2, Row 4 |' />
 
+# BrowserView Component
+
+The `<BrowserView>` component provides a powerful and visually engaging way to embed simulated web browser frames within your documentation. This component is ideal for showcasing user interfaces, demonstrating workflows, or highlighting specific website elements within your MDX content.
+
+## Overview
+
+The `BrowserView` component renders a realistic browser window, including a customizable address bar, browser frame, and optional device emulation. This component enhances the user experience by providing context and making it easier for readers to visualize how an interface will appear and behave within a browser context.
+
+<BrowserView url="https://www.example.com" >
+this is the content inside the browser view
+</BrowserView>
+
+## Key Features
+
+*   **Realistic Browser Frame:** Renders a styled browser frame with a customizable address bar.
+*   **URL Input:** Accepts a `url` prop that populates the browser's address bar.
+*   **Content Embedding:**  Allows embedding any HTML content inside the browser frame.
+*   **Optional Device Emulation:** Supports device-specific emulation for responsive design.
+*   **Customizable Styling:** Offers props for fine-tuning the visual appearance.
+*   **Interactive Demonstrations:** Perfect for guiding users through complex interface interactions.
+
+## Props
+
+The `<BrowserView>` component supports the following props:
+
+| Prop          | Type     | Default Value | Description                                                                                                                                                                 |
+| ------------- | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `url`          | `string` | `""`          | The URL to be displayed in the browser's address bar.                                                                                                                     |
+| `device`       | `string` | `null`        | Optionally emulate a device. Valid values include: `"mobile"`, `"tablet"`, or `null`. If a `device` is not selected the component will be displayed in desktop view.           |
+| `theme`        | `string` | `"light"`      | The theme of the browser UI, either `"light"` or `"dark"`.                                                                                                              |
+| `header`       | `boolean` | `true`          | Toggle the visibility of the address bar header. Set to `false` to hide the address bar.                                                                                         |
+| `contentClass` | `string` | `""`          | Custom class to be added to the content wrapper so you can add your own styling.                                                                                     |
+|`iframeProps`| `object` | `{}`        | Additional props to be passed to the iframe element. You can use this to disable the iframe scrolling by adding `{ scrolling : false }` |
+
+## Usage
+
+The `<BrowserView>` component is designed to be intuitive and simple to use within your MDX content. The following examples demonstrate how to integrate this component effectively.
+
+**Basic Example:**
+
+The simplest way to use the component is to provide a URL.
+
+```md
+<BrowserView url="https://www.example.com" />
+```

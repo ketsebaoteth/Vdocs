@@ -12,6 +12,7 @@ import TabbedCodeBlock from '../DocsBlocks/TabbedCodeBlock.vue';
 import Callout from '../DocsBlocks/Callout.vue';
 import HorizontalRule from '../DocsBlocks/HorizontalRule.vue';
 import Table from '../DocsBlocks/table.vue';
+import BrowserView from '../DocsBlocks/BrowserView.vue';
 import 'highlight.js/styles/monokai.css';
 
 const mdxContent = ref(null);
@@ -22,6 +23,7 @@ function wrapWithProvider(mdxDefaultExport) {
     Codeblock,
     TabbedCodeBlock,
     Callout,
+    BrowserView,
     table: Table,
     hr: HorizontalRule,
     h1: VdocsHeading,

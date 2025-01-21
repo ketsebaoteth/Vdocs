@@ -41,17 +41,7 @@
     width: 1%;
     word-wrap: break-word;
   }
-  
-  /* Optional: Zebra striping for better readability */
-  .table-cont tbody tr:nth-child(even) {
-    @apply bg-muted;
-  }
 
-  
-  /* Optional: Hover effect for rows */
-  .table-cont tbody tr:hover {
-    @apply bg-muted;
-  }
   
   /* Remove right border from the last header and data cells to prevent double borders */
   .table-cont th:last-child,
