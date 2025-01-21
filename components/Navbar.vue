@@ -31,7 +31,7 @@ const props = defineProps({
 <template>
     <div class="navbar flex-place-center gap-3">
         <div @click="router.push('/')" class="logo flex-place-center gap-1">
-            <img src="../assets/images/logo.svg" alt="">
+            <img  src="../assets/images/logo.svg" alt="">
             <h1 class="cursor-pointer">{{props.logoText}}</h1>
         </div>
         <NavbarSearchBar />

@@ -13,7 +13,7 @@ const copyQuick = () => {
         <Toaster class="!transition-all" />
         <div class="flex flex-col items-center justify-center mt-[-56px] gap-5">
 
-            <div class="relative cursor-pointer flex space-x-2 items-center z-10 rounded-full bg-neutral-100 dark:bg-neutral-800 py-1.5 px-4 ring-1 ring-white/10 ">
+            <div class="relative cursor-pointer flex space-x-2 items-center z-10 rounded-full bg-background py-1.5 px-4 border border-border ">
                 <span class="text-sm">Vdocs Version 1.0.1 is out now</span>
                 <svg fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M10.75 8.75L14.25 12L10.75 15.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
             </div>

@@ -1,3 +1,4 @@
+<!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/DocsBlocks/codeblock.vue -->
 <script setup>
 import { Button } from '@/components/ui/button'
 import { IconCopy } from '@tabler/icons-vue'
@@ -7,7 +8,7 @@ import 'highlight.js/styles/github.css'
 import vue from "highlight.js/lib/languages/vbscript-html"
 import bash from "highlight.js/lib/languages/bash"
 
-// 2. Register the Vue language
+// Register the Vue and Bash languages
 hljs.registerLanguage('vue', vue)
 hljs.registerLanguage('bash', bash)
 
@@ -25,17 +26,17 @@ watch(
     try {
       highlightedCode.value =
         props.lang && props.lang !== 'auto'
-          ? hljs.highlight(props.lang, newCode).value
-          : hljs.highlightAuto(newCode).value
+          ? hljs.highlight(props.lang, newCode.trim()).value
+          : hljs.highlightAuto(newCode.trim()).value
     } catch {
-      highlightedCode.value = newCode
+      highlightedCode.value = newCode.trim()
     }
   },
   { immediate: true }
 )
 
 const copyQuick = () => {
-  navigator.clipboard.writeText(props.content)
+  navigator.clipboard.writeText(props.content.trim())
   toast.success('Copied to clipboard')
 }
 </script>
@@ -50,22 +51,45 @@ const copyQuick = () => {
         <IconCopy class="size-5" />
       </Button>
     </div>
-    <div class="bg-background relative border border-border pr-10 flex place-content-start flex-wrap rounded-md mt-0 rounded-t-none w-full p-4 py-0 codeblock">
-      <Toaster  />
-      
+    <Toaster />
+    <div class="bg-background border border-border rounded-md mt-0 rounded-t-none w-full p-4 codeblock">
       <pre class="code-content">
-        <code class="p-0" v-html="highlightedCode" :class="['language-' + lang]"></code>
+<code v-html="highlightedCode" :class="['language-' + props.lang]"></code>
       </pre>
     </div>
   </div>
-  
 </template>
 
 <style scoped>
-.code-content{
-  @apply overflow-x-auto;
+/* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
+/** {
+  scrollbar-width: thin;
+  scrollbar-color: #397524 #DFE9EB;
+}*/
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
 }
-.code-content *{
-  @apply py-0;
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  @apply bg-background;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-border pb-2 rounded-md;
+}
+
+
+.code-content {
+  @apply overflow-x-auto mb-1;
+}
+.code-content pre{
+  @apply m-0 p-0;
+}
+.code-content code{
+  @apply m-0 p-0;
+  white-space: pre;
 }
 </style>
