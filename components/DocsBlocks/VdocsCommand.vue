@@ -66,7 +66,6 @@ watch(
 <template>
   <div class="bg-background relative border border-border rounded-md my-2 w-full p-4 codeblock">
     <!-- Toaster for notifications -->
-    <Toaster />
 
     <!-- Copy Button -->
     <Button

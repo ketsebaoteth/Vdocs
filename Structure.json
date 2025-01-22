@@ -10,6 +10,25 @@
       "children": [
         {
           "isFolder": true,
+          "name": "Advanced",
+          "order": 0,
+          "children": [
+            {
+              "isFolder": false,
+              "name": "Adding New Sections.mdx",
+              "order": 0,
+              "path": "@v1.0.0/Advanced/Adding New Sections.mdx"
+            },
+            {
+              "isFolder": false,
+              "name": "How Vdocs Works.mdx",
+              "order": 0,
+              "path": "@v1.0.0/Advanced/How Vdocs Works.mdx"
+            }
+          ]
+        },
+        {
+          "isFolder": true,
           "name": "Configuration",
           "order": 0,
           "children": [
@@ -20,6 +39,12 @@
               "path": "@v1.0.0/Configuration/Themeing.mdx"
             }
           ]
+        },
+        {
+          "isFolder": true,
+          "name": "Custom Components",
+          "order": 0,
+          "children": []
         },
         {
           "isFolder": true,

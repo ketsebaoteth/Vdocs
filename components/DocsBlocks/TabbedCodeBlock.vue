@@ -1,6 +1,5 @@
 <template>
   <div class="tabbed-code-block">
-    <Toaster />
     <div class="tabs">
       <button
         v-for="(tab, index) in parsedTabs"
@@ -28,6 +27,21 @@ import { ref, watch } from 'vue';
 import { Button } from '@/components/ui/button'
 import { IconCopy } from '@tabler/icons-vue';
 import { Toaster, toast } from 'vue-sonner';
+
+const toastOptions = {
+  success: {
+    className: 'bg-green-500',
+  },
+  error: {
+    className: 'toast-error',
+  },
+  info: {
+    className: 'toast-info',
+  },
+  warning: {
+    className: 'toast-warning',
+  },
+}
 
 const copyQuick = () => {
     navigator.clipboard.writeText('npx create vdocs@latest')
@@ -85,4 +99,5 @@ const highlightedCode = ref('');
 .code-content pre code {
   @apply flex px-3 py-0 text-sm;
 }
+
 </style>

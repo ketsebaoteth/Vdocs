@@ -1,6 +1,6 @@
 <!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/Docs/viewer.vue -->
 <script setup>
-import { ref, watch, nextTick } from 'vue';
+import { ref, watch, nextTick, defineComponent, h } from 'vue';
 import { docsStates } from '../../state';
 import Codeblock from '../DocsBlocks/codeblock.vue';
 import { MDXProvider } from '@mdx-js/vue';
@@ -14,8 +14,11 @@ import HorizontalRule from '../DocsBlocks/HorizontalRule.vue';
 import Table from '../DocsBlocks/table.vue';
 import BrowserView from '../DocsBlocks/BrowserView.vue';
 import 'highlight.js/styles/monokai.css';
+import { matter } from 'vfile-matter';
+import { VFile } from 'vfile';
 
 const mdxContent = ref(null);
+
 
 // Wrap MDX in a provider
 function wrapWithProvider(mdxDefaultExport) {
@@ -33,15 +36,23 @@ function wrapWithProvider(mdxDefaultExport) {
   };
   return defineComponent({
     setup() {
-      return () =>
-        h(MDXProvider, { components }, [h(mdxDefaultExport)]);
+      return () => h(MDXProvider, { components }, [h(mdxDefaultExport)]);
     },
   });
 }
 
-// Load the MDX
 async function loadMDX(componentPath) {
   try {
+    // 1) Fetch the raw text so vfile-matter can parse it
+    const res = await fetch(`/docs/${componentPath}`);
+    const text = await res.text();
+
+    // 2) Parse frontmatter from that text
+    const file = new VFile({ value: text });
+    matter(file);
+    docsStates.value.selectedDocMatter = file.data.matter
+
+    // 3) Now import the compiled MDX module (for rendering)
     const module = await import(`../../public/docs/${componentPath}`);
     mdxContent.value = wrapWithProvider(module.default);
   } catch (error) {
@@ -50,7 +61,7 @@ async function loadMDX(componentPath) {
   }
 }
 
-// 2) Extract headings after MDX is loaded
+// Extract headings after MDX is loaded
 function updateHeadings() {
   const container = document.getElementById('mdx_display');
   if (!container) return;
@@ -58,7 +69,7 @@ function updateHeadings() {
   docsStates.value.headings = Array.from(headingElems).map((elem, i) => {
     const id = `heading-${i}`;
     elem.setAttribute('id', id);
-    return { id, text: elem.innerText };
+    return { id, text: elem.textContent };
   });
 }
 
@@ -77,8 +88,13 @@ watch(
 
 <template>
   <div id="mdx_display" class="mdx_display">
+    <!-- Display the MDX content -->
     <component :is="mdxContent" v-if="mdxContent" />
+
+    <!-- Display a message if no document is selected -->
     <p v-else>No document selected or failed to load.</p>
+
+    <!-- Navigation buttons to go to next and previous page -->
     <div class="flex gap-2 my-5">
       <DocsPrePage prePage="prepage" />
       <DocsNextPage nextPage="nextpage" />
@@ -89,5 +105,46 @@ watch(
 <style scoped>
 .mdx_display {
   @apply p-5 pl-10 w-[75%] h-full text-foreground max-w-[800px];
+  /* Ensures pseudo-element can layer over this container */
+  position: relative;
+}
+
+/* Pseudo-element to create a subtle grid texture at the top */
+.mdx_display::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+  /* 
+    1) repeating-linear-gradient(...) draws the grid lines. 
+    2) linear-gradient(...) fades from transparent to var(--background).
+    Using background-blend-mode: multiply to combine them subtly.
+  */
+  background:
+    repeating-linear-gradient(
+      to right,
+      hsl(var(--border)) 0,
+      hsl(var(--border)) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      hsl(var(--border)) 0,
+      hsl(var(--border)) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 30%,
+      hsl(var(--background)) 100%
+    );
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+  background-blend-mode: multiply, multiply, normal;
+  opacity: 0.4;
 }
 </style>

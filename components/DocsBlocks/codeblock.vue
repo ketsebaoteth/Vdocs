@@ -15,6 +15,7 @@ hljs.registerLanguage('bash', bash)
 const props = defineProps({
   content: { type: String, default: '' },
   lang: { type: String, default: 'plaintext' },
+  details: { type: String, default: '' }
 })
 
 import { ref, watch } from 'vue'
@@ -47,12 +48,14 @@ const copyQuick = () => {
       <div class="text-sm px-3 rounded-md py-1 border border-border">
         {{ props.lang }}
       </div>
-      <Button @click="copyQuick()" variant="outline" size="icon" class="ml-auto right-2 top-1">
+      <p class="text-sm text-muted-foreground ml-3">
+        {{ props.details }}
+      </p>
+      <Button @click="copyQuick()" variant="outline" size="icon" class="ml-auto active:scale-[0.9] text-muted-foreground right-2 top-1">
         <IconCopy class="size-5" />
       </Button>
     </div>
-    <Toaster />
-    <div class="bg-background border border-border rounded-md mt-0 rounded-t-none w-full p-4 codeblock">
+    <div class="bg-background border border-border rounded-md mt-0 rounded-t-none w-full p-4 pb-1 codeblock">
       <pre class="code-content">
 <code v-html="highlightedCode" :class="['language-' + props.lang]"></code>
       </pre>
@@ -69,7 +72,7 @@ const copyQuick = () => {
 
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
-  height: 10px;
+  height: 5px;
   width: 10px;
 }
 *::-webkit-scrollbar-track {
@@ -83,7 +86,7 @@ const copyQuick = () => {
 
 
 .code-content {
-  @apply overflow-x-auto mb-1;
+  @apply overflow-x-auto mb-1 ;
 }
 .code-content pre{
   @apply m-0 p-0;

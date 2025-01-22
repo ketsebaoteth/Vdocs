@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/Docs/Sidebar.vue -->
 <script setup>
 import {
   Select,
@@ -11,8 +10,8 @@ import {
 } from '@/components/ui/select'
 import docsStructure from "../../Structure.json";
 import { docsStates } from '../../state';
-import { watch, ref, computed } from 'vue';
-import { versions } from '../../state';
+import { ref, computed } from 'vue';
+import { IconChevronDown } from '@tabler/icons-vue';
 
 let selectedVersion = ref(docsStructure.children[0]?.name || "");
 
@@ -43,7 +42,7 @@ const removeExtension = (filename) => {
 </script>
 
 <template>
-  <div class="sidebar flex flex-col gap-2 place-items-center">
+  <div class="sidebar flex flex-col gap-2 sticky bottom-0 place-items-center">
     <DocsSidebarSearch />
     <Select v-model="selectedVersion">
       <SelectTrigger class="h-8">
@@ -60,10 +59,10 @@ const removeExtension = (filename) => {
     </Select>
     <separator direction="horizontal" gofullwidth />
     <!-- List tree here -->
-    <div class="topic w-full">
+    <div class="topic w-full p-1">
       <div class="main w-full flex flex-col justify-start" v-for="(subtopic, subindex) in filteredTopics" :key="subindex">
         <div class="subtopics">
-          <p class="subtopic" v-if="subtopic.isFolder">{{ subtopic.name }}</p>
+            <p class="subtopic" v-if="subtopic.isFolder">{{ subtopic.name }}</p>
           <div class="files" v-for="(file, fileindex) in subtopic.children" :key="fileindex" :class="{'bg-secondary': docsStates.selectedDoc === file.path}">
             <p class="filename" :class="{'!text-primary': docsStates.selectedDoc === file.path}" @click="setSelectedDoc(file.path, file.componentSrc)">{{removeExtension(file.name)}}</p>
           </div>
@@ -75,13 +74,13 @@ const removeExtension = (filename) => {
 
 <style scoped>
 .sidebar {
-  @apply w-80 h-full p-5 bg-background;
+  @apply w-80 h-fit p-6 bg-background ;
 }
 .subtopic{
   @apply text-foreground py-1;
 }
 .files{
-  @apply flex flex-col gap-2 h-8 my-1 flex justify-center  rounded-lg;
+  @apply flex flex-col gap-2 h-8  flex justify-center rounded-lg hover:bg-secondary;
 }
 .filename{
   @apply text-sm text-muted-foreground ml-5 cursor-pointer;

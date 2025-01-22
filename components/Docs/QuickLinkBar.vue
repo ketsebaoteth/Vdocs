@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/Docs/QuickLinkBar.vue -->
 <template>
     <div class="w-96 h-screen bg-background p-8 sticky top-16 relative">
       <!-- Indicator Bar: Only render if there is an active heading -->
@@ -71,11 +70,10 @@
             activeHeadingId.value = entry.target.id;
           } else {
             // Optional: Unset activeHeadingId if heading is not intersecting
-            // This depends on how you want to handle multiple headings in view
           }
         });
       },
-      { threshold: 0.3 } // Adjust threshold as needed
+      { threshold: 0.3 } // threshold can be adjusted as needed
     );
   
     newHeadings.forEach((heading) => {

@@ -10,7 +10,6 @@ const copyQuick = () => {
 </script>
 <template>
     <div class="hero-size bg-transparent flex place-items-center justify-center">
-        <Toaster class="!transition-all" />
         <div class="flex flex-col items-center justify-center mt-[-56px] gap-5">
 
             <div class="relative cursor-pointer flex space-x-2 items-center z-10 rounded-full bg-background py-1.5 px-4 border border-border ">

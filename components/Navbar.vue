@@ -89,7 +89,7 @@ const props = defineProps({
                     <NavbarGithub :githubLink="'vercel/next.js'" />
               </TooltipTrigger>
               <TooltipContent>
-                <p>Github</p>
+                <p>Open Repository</p>
               </TooltipContent>
             </Tooltip>
         </TooltipProvider>
@@ -103,7 +103,7 @@ const props = defineProps({
 
 <style scoped>
 .navbar{
-    @apply w-screen h-14 bg-background sticky top-0 border-b border-border px-8 z-50;
+    @apply w-screen h-16 bg-background sticky top-0 border-b border-border px-8 z-50;
 }
 
 </style>

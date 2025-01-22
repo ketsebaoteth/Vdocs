@@ -18,11 +18,11 @@ const props = defineProps({
 </script>
 <template>
     <div 
-    class="w-full py-3 border-2 border-background shadow-md my-2 rounded-lg flex gap-4 p-4 bg-gradient-to-b from-red-100 dark:from-red-950 to-background"
+    class="w-full py-3 border border-red-500 bg-red-100 dark:bg-red-950 shadow-md my-2 rounded-lg flex gap-4 p-4 "
     :class="{
-        '!from-blue-100 dark:!from-blue-950': props.type == 'info',
-        '!from-yellow-100 dark:!from-yellow-950': props.type == 'warning',
-        '!from-green-100 dark:!from-green-950': props.type == 'success',
+        '!bg-blue-50 !border-blue-300 dark:!border-blue-700 dark:!bg-blue-950': props.type == 'info',
+        '!bg-yellow-100 !border-yellow-500 dark:!border-yellow-500 dark:!bg-yellow-800': props.type == 'warning',
+        '!bg-green-100 !border-green-500 dark:!bg-green-950': props.type == 'success',
     }"
     >
         <div class="p-2 h-fit rounded-full shadow-lg bg-background">

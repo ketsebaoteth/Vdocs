@@ -1,6 +1,5 @@
-<!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/Navbar/Github.vue -->
 <script setup lang="ts">
-import { IconBrandGithub } from '@tabler/icons-vue';
+import { IconBrandGithub, IconStar, IconGitFork } from '@tabler/icons-vue';
 import { ref, onMounted, computed } from 'vue';
 
 const props = defineProps({
@@ -11,50 +10,68 @@ const props = defineProps({
 });
 
 const starCount = ref<number | null>(null);
+const forkCount = ref<number | null>(null);
 
-const getGithubStars = async () => {
+const getGithubStats = async () => {
   const res = await fetch(`https://api.github.com/repos/${props.githubLink}`);
   const data = await res.json();
-  return data.stargazers_count;
+  return {
+    stars: data.stargazers_count,
+    forks: data.forks_count
+  };
 };
 
-// 1. Format function
-function formatStars(count: number | null): string {
+function formatCount(count: number | null): string {
   if (count === null || isNaN(count)) {
     return '0';
   }
   if (count < 1000) {
-    return count.toString();        // e.g. "128"
+    return count.toString();
   } else if (count < 1000000) {
-    // Up to 999,999 => "12.3k"
     return (count / 1000).toFixed(1) + 'k';
   } else {
-    // 1,000,000+ => "1.2mil" or "12.3mil"
     return (count / 1000000).toFixed(1) + 'mil';
   }
 }
 
 onMounted(async () => {
-  starCount.value = await getGithubStars();
+  const stats = await getGithubStats();
+  starCount.value = stats.stars;
+  forkCount.value = stats.forks;
 });
 
-// 2. Computed property to display formatted count
-const formattedCount = computed(() => formatStars(starCount.value));
-const opengithub = ()=>{
-    window.open('https://github.com/'+props.githubLink)
+const formattedStars = computed(() => formatCount(starCount.value));
+const formattedForks = computed(() => formatCount(forkCount.value));
+
+const opengithub = () => {
+  window.open('https://github.com/'+props.githubLink)
 }
 </script>
 
 <template>
-  <div @click="opengithub" class="navbar_github flex-place-center gap-1">
-    <IconBrandGithub class="size-5 cursor-pointer" />
-    <!-- 3. Use the computed value in template -->
-    <span>{{ formattedCount }}</span>
+  <div @click="opengithub" class="navbar_github hover:opacity-[0.6] transition-opacity flex-place-center gap-1 border-x border-border">
+    <IconBrandGithub class="size-6 cursor-pointer" />
+    <div class="github_details flex flex-col place-items-start">
+      <span class="leading-tight text-sm text-primary font-semibold"> {{ props.githubLink }}</span>
+      <div class="star_fork flex-place-center gap-1">
+        <div class="flex-place-center gap-1">
+          <IconStar class="size-3" />
+          <span class="text-[0.7rem]">{{ formattedStars }}</span>
+        </div>
+        <div class="flex-place-center gap-1">
+          <IconGitFork class="size-3" />
+          <span class="text-[0.7rem]">{{ formattedForks }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .navbar_github {
-  @apply cursor-pointer px-1 py-1;
+  @apply cursor-pointer px-3 py-1;
+}
+.transition-opacity{
+  transition: opacity 0.2s ease-in-out;
 }
 </style>
