@@ -54,7 +54,7 @@ async function loadMDX(componentPath) {
     docsStates.value.selectedDocMatter = file.data.matter
 
     // 3) Now import the compiled MDX module (for rendering)
-    const module = await import(`../../public/docs/${componentPath}`);
+    const module = await import(`../../.output/public/docs/${componentPath}`);
     mdxContent.value = wrapWithProvider(module.default);
   } catch (error) {
     console.error(error);
