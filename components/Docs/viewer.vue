@@ -17,6 +17,7 @@ import DirStructure from '../DocsBlocks/DirStructure.vue';
 import 'highlight.js/styles/monokai.css';
 import { matter } from 'vfile-matter';
 import { VFile } from 'vfile';
+import { useRuntimeConfig } from '#imports';
 
 const mdxContent = ref(null);
 
@@ -44,6 +45,9 @@ function wrapWithProvider(mdxDefaultExport) {
 
 async function loadMDX(componentPath) {
   try {
+
+    const { public: { docsBasePath } } = useRuntimeConfig();
+    
     // 1) Fetch the raw text so vfile-matter can parse it
     const res = await fetch(`/docs/${componentPath}`);
     const text = await res.text();
@@ -54,7 +58,7 @@ async function loadMDX(componentPath) {
     docsStates.value.selectedDocMatter = file.data.matter
 
     // 3) Now import the compiled MDX module (for rendering)
-    const module = await import(`../../.output/public/docs/${componentPath}`);
+    const module = await import(`${docsBasePath}/${componentPath}`);
     mdxContent.value = wrapWithProvider(module.default);
   } catch (error) {
     console.error(error);

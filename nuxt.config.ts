@@ -60,6 +60,12 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    public: {
+      docsBasePath: process.env.DOCS_BASE_PATH || '../../public/docs',
+    },
+  },
+
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxt/fonts', 'nuxt-shiki', '@nuxt/icon'],
 
   tailwindcss: {
