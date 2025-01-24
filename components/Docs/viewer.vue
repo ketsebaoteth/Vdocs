@@ -18,6 +18,7 @@ import 'highlight.js/styles/monokai.css';
 import { matter } from 'vfile-matter';
 import { VFile } from 'vfile';
 import { useRuntimeConfig } from '#imports';
+import { toast } from 'vue-sonner';
 
 const mdxContent = ref(null);
 
@@ -43,21 +44,35 @@ function wrapWithProvider(mdxDefaultExport) {
   });
 }
 
+async function getFrontMatter(path){
+  try {
+    const res = await $fetch('/middleware/frontmatter',{
+      method: `POST`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        path: path
+      }
+    })
+
+    return res;
+  }catch(error){
+    console.error(error);
+    toast.error('Failed to get frontmatter');
+    return null;
+  }
+}
+
 async function loadMDX(componentPath) {
   try {
 
     const { public: { docsBasePath } } = useRuntimeConfig();
 
-    console.log("Receved from nuxt: ", docsBasePath)
+    console.log("Receved from env: ", docsBasePath)
 
-    // 1) Fetch the raw text so vfile-matter can parse it
-    const res = await fetch(`/docs/${componentPath}`);
-    const text = await res.text();
-
-    // 2) Parse frontmatter from that text
-    const file = new VFile({ value: text });
-    matter(file);
-    docsStates.value.selectedDocMatter = file.data.matter
+    const matterFromMiddleware = await getFrontMatter(`documentation/${componentPath}`)
+    docsStates.value.selectedDocMatter = matterFromMiddleware.frontMatter.matter;
 
     // 3) Now import the compiled MDX module (for rendering)
     const module = await import(`${docsBasePath}/${componentPath}`);
