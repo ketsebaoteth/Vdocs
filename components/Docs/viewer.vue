@@ -47,7 +47,9 @@ async function loadMDX(componentPath) {
   try {
 
     const { public: { docsBasePath } } = useRuntimeConfig();
-    
+
+    console.log("Receved from nuxt: ", docsBasePath)
+
     // 1) Fetch the raw text so vfile-matter can parse it
     const res = await fetch(`/docs/${componentPath}`);
     const text = await res.text();
