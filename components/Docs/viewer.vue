@@ -13,6 +13,7 @@ import Callout from '../DocsBlocks/Callout.vue';
 import HorizontalRule from '../DocsBlocks/HorizontalRule.vue';
 import Table from '../DocsBlocks/table.vue';
 import BrowserView from '../DocsBlocks/BrowserView.vue';
+import DirStructure from '../DocsBlocks/DirStructure.vue';
 import 'highlight.js/styles/monokai.css';
 import { matter } from 'vfile-matter';
 import { VFile } from 'vfile';
@@ -27,9 +28,9 @@ function wrapWithProvider(mdxDefaultExport) {
     TabbedCodeBlock,
     Callout,
     BrowserView,
+    DirStructure,
     table: Table,
     hr: HorizontalRule,
-    h1: VdocsHeading,
     h2: VdocsH2,
     ul: VdocsList,
     pre: VdocsBasiCodeBlock,
@@ -88,11 +89,13 @@ watch(
 
 <template>
   <div id="mdx_display" class="mdx_display">
+    <DocsGoToTop />
+    <DocsBlocksVdocsHeading />
     <!-- Display the MDX content -->
     <component :is="mdxContent" v-if="mdxContent" />
 
     <!-- Display a message if no document is selected -->
-    <p v-else>No document selected or failed to load.</p>
+    <p v-else>No Content In This Document.</p>
 
     <!-- Navigation buttons to go to next and previous page -->
     <div class="flex gap-2 my-5">
@@ -102,7 +105,11 @@ watch(
   </div>
 </template>
 
-<style scoped>
+<style>
+.mdx_display code:not(pre > code) {
+  /* Your inline code styles */
+  @apply text-primary !font-semibold px-1 py-[2px] border-muted border border-dashed rounded-md bg-secondary;
+}
 .mdx_display {
   @apply p-5 pl-10 w-[75%] h-full text-foreground max-w-[800px];
   /* Ensures pseudo-element can layer over this container */
@@ -116,7 +123,7 @@ watch(
   top: 0;
   left: 0;
   width: 100%;
-  height: 150px;
+  height: 120px;
   pointer-events: none;
   /* 
     1) repeating-linear-gradient(...) draws the grid lines. 
@@ -136,11 +143,11 @@ watch(
       hsl(var(--border)) 0,
       hsl(var(--border)) 1px,
       transparent 1px,
-      transparent 20px
+      transparent 80px
     ),
     linear-gradient(
       to bottom,
-      transparent 30%,
+      transparent 80%,
       hsl(var(--background)) 100%
     );
   background-size: 20px 20px, 20px 20px, 100% 100%;

@@ -56,6 +56,8 @@ const props = defineProps({
 
 <style scoped>
 .link{
-    @apply cursor-pointer text-sm px-2 gap-1;
+    transition: all 0.2s ease-in-out;
+    @apply cursor-pointer text-sm px-2 gap-1 hover:text-muted-foreground;
 }
+
 </style>

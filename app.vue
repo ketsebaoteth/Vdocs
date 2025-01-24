@@ -1,3 +1,4 @@
+<!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/app.vue -->
 <template>
   <div>
     <Toaster :toast-options="toastOptions" />
@@ -9,9 +10,25 @@
 
 <script setup>
 import { Toaster } from 'vue-sonner';
+import { docsStates } from './state';
+import { watch } from 'vue';
+import { useHead } from '@vueuse/head';
+
+// Watch for changes in docsStates and update the title
+watch(
+  () => docsStates.value.selectedDocMatter,
+  (newVal) => {
+    if (newVal && newVal.title) {
+      useHead({
+        title: newVal.title + ' | Vdocs',
+      });
+    }
+  },
+  { immediate: true }
+);
 
 const toastOptions = {
-    class: "bg-background text-foreground border-green-500 bg-gradient-to-r from-green-100 dark:from-green-900 to-background",
-    descriptionClass: 'my-toast-description'
-  }
+  class: "bg-background text-foreground border-green-500 bg-gradient-to-r from-green-100 dark:from-green-900 to-background",
+  descriptionClass: 'my-toast-description'
+};
 </script>

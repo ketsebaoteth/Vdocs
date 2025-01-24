@@ -4,13 +4,12 @@ import { Button } from '@/components/ui/button'
 import { IconCopy } from '@tabler/icons-vue'
 import { Toaster, toast } from 'vue-sonner'
 import hljs from 'highlight.js'
-import 'highlight.js/styles/github.css'
-import vue from "highlight.js/lib/languages/vbscript-html"
-import bash from "highlight.js/lib/languages/bash"
+import 'highlight.js/styles/atom-one-dark-reasonable.css'
+import allLangs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
 
-// Register the Vue and Bash languages
-hljs.registerLanguage('vue', vue)
-hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('vue', javascript);
+
 
 const props = defineProps({
   content: { type: String, default: '' },
@@ -43,7 +42,7 @@ const copyQuick = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-0 my-1">
+  <div class="flex flex-col gap-0 my-3">
     <div class="codeblocknav relative w-full py-2 px-3 flex-place-center border-x border-t rounded-t-md border-border">
       <div class="text-sm px-3 rounded-md py-1 border border-border">
         {{ props.lang }}

@@ -11,95 +11,89 @@
         {
           "isFolder": true,
           "name": "Advanced",
-          "order": 0,
+          "order": 5,
           "children": [
             {
               "isFolder": false,
               "name": "Adding New Sections.mdx",
               "order": 0,
-              "path": "@v1.0.0/Advanced/Adding New Sections.mdx"
+              "path": "@v1.0.0/Advanced~5/Adding New Sections.mdx"
             },
             {
               "isFolder": false,
               "name": "How Vdocs Works.mdx",
               "order": 0,
-              "path": "@v1.0.0/Advanced/How Vdocs Works.mdx"
+              "path": "@v1.0.0/Advanced~5/How Vdocs Works.mdx"
             }
           ]
         },
         {
           "isFolder": true,
           "name": "Configuration",
-          "order": 0,
+          "order": 3,
           "children": [
             {
               "isFolder": false,
               "name": "Themeing.mdx",
               "order": 0,
-              "path": "@v1.0.0/Configuration/Themeing.mdx"
+              "path": "@v1.0.0/Configuration~3/Themeing.mdx"
             }
           ]
         },
         {
           "isFolder": true,
           "name": "Custom Components",
-          "order": 0,
-          "children": []
-        },
-        {
-          "isFolder": true,
-          "name": "Examples",
-          "order": 0,
+          "order": 4,
           "children": [
             {
               "isFolder": false,
               "name": "Components.mdx",
               "order": 0,
-              "path": "@v1.0.0/Examples/Components.mdx"
+              "path": "@v1.0.0/Custom Components~4/Components.mdx"
             }
           ]
         },
         {
           "isFolder": true,
           "name": "Getting Started",
-          "order": 0,
+          "order": 1,
           "children": [
             {
               "isFolder": false,
-              "name": "Basic Themeing.mdx",
-              "order": 0,
-              "path": "@v1.0.0/Getting Started/Basic Themeing.mdx"
+              "name": "Basic Themeing",
+              "order": 3,
+              "path": "@v1.0.0/Getting Started~1/Basic Themeing~3.mdx"
             },
             {
               "isFolder": false,
-              "name": "configuration.mdx",
-              "order": 0,
-              "path": "@v1.0.0/Getting Started/configuration.mdx"
+              "name": "configuration",
+              "order": 4,
+              "path": "@v1.0.0/Getting Started~1/configuration~4.mdx"
             },
             {
               "isFolder": false,
-              "name": "Folder Structure.mdx",
-              "order": 0,
-              "path": "@v1.0.0/Getting Started/Folder Structure.mdx"
+              "name": "Folder Structure",
+              "order": 2,
+              "path": "@v1.0.0/Getting Started~1/Folder Structure~2.mdx"
             },
             {
               "isFolder": false,
-              "name": "installation.mdx",
-              "order": 0,
-              "path": "@v1.0.0/Getting Started/installation.mdx"
+              "name": "installation",
+              "order": 1,
+              "path": "@v1.0.0/Getting Started~1/installation~1.mdx"
             }
           ]
         },
         {
           "isFolder": true,
           "name": "Installation",
-          "order": 0,
+          "order": 2,
           "children": [
             {
               "isFolder": false,
               "name": "install.mdx",
               "order": 0,
-              "path": "@v1.0.0/Installation/install.mdx"
+              "path": "@v1.0.0/Installation~2/install.mdx"
             }
           ]
         }

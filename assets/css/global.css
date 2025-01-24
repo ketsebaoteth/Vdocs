@@ -103,6 +103,6 @@
 
 * {
   transition-property: background-color, border-color;
-  transition-duration: 0.5s;
-  transition-timing-function: ease;
+  transition-duration: 0.8s;
+  transition-timing-function: ease-in-out;
 }

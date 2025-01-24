@@ -6,6 +6,7 @@
     <div>
         <BackgroundPatteroverlay />
         <HerosDefault />
+        <ExtendersLandingPageEx />
         <FooterDefault />
     </div>
 </template>

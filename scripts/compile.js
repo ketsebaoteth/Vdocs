@@ -10,17 +10,32 @@ const docsDir = path.join(__dirname, '../public/docs');
 const structureFilePath = path.join(__dirname, '../Structure.json');
 
 /**
- * Extracts an optional "#number" suffix from a file/folder name.
- * Example: "MyFolder#2" -> { baseName: "MyFolder", order: 2 }
+ * Extracts an optional "~number" suffix from a file/folder name.
+ * Example: "MyFolder~2" -> { baseName: "MyFolder", order: 2 }
  *          "AnotherFolder" -> { baseName: "AnotherFolder", order: 0 }
  */
 function parseName(name) {
-  const match = name.match(/^(.*?)(#(\d+))?$/);
+  const match = name.match(/^(.*?)(~(\d+))?$/);
   if (!match) {
     return { baseName: name, order: 0 };
   }
   const baseName = match[1] || name;
   const order = match[3] ? parseInt(match[3], 10) : 0;
+  return { baseName, order };
+}
+
+function parseNameForFile(name) {
+  // This pattern captures everything before '~' as ([^~]+) 
+  // and the digits after '~' as (\d+), then .mdx at the end
+  const match = name.match(/^([^~]+)~(\d+)\.mdx$/);
+  if (!match) {
+    return { baseName: name, order: 0 };
+  }
+  // match[1] = the text before '~'
+  // match[2] = the number after '~'
+  const baseName = match[1] || name;
+  const order = match[2] ? parseInt(match[2], 10) : 0;
+  
   return { baseName, order };
 }
 
@@ -39,7 +54,7 @@ async function updateStructure(dir, structure, rootPath) {
       const folderStructure = {
         isFolder: true,
         name: baseName, // stripped name
-        order,          // order from #number
+        order,          // order from ~number
         children: []
       };
       structure.children.push(folderStructure);
@@ -47,6 +62,7 @@ async function updateStructure(dir, structure, rootPath) {
 
     // If MDX file
     } else if (stats.isFile() && file.endsWith('.mdx')) {
+      const { baseName, order } = parseNameForFile(file);
       const fileStructure = {
         isFolder: false,
         name: baseName, // stripped name

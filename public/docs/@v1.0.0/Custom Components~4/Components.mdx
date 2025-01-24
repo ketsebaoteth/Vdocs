@@ -1,8 +1,8 @@
 ---
 date: 2025-01-13
 author: Ketsebaot-Gizachew
+title: Components
 ---
-# VDocs Components
 
 VDocs provides a suite of custom components that enhance the functionality and visual appeal of your documentation written in MDX. These components are designed for seamless integration and ease of use.
 
@@ -11,9 +11,9 @@ VDocs provides a suite of custom components that enhance the functionality and v
 The `<TabbedCodeBlock>` component enables you to display code snippets within interactive tabs, improving organization and clarity. This is particularly useful when demonstrating the same task across multiple platforms or environments.
 
 <TabbedCodeBlock tabs='[
-  { "name": "NPM", "command": "npx create vdocs@latest" },
-  { "name": "Bun", "command": "bun init vdocs@latest" },
-  { "name": "Yarn", "command": "yarn create vdocs@latest" }
+  { "name": "NPM", "command": "npx create vdocs@latest " },
+  { "name": "Bun", "command": "bun init vdocs@latest //for bun" },
+  { "name": "Yarn", "command": "yarn create vdocs@latest //for yarn" }
 ]' />
 
 **Usage:**
@@ -124,7 +124,7 @@ Note that VDocs will automatically recognize and style markdown table syntax.
 
 ---
 
-## Example Usage
+### Table usage
 
 This section demonstrates how to use these components together to create a cohesive and informative page in MDX.
 
@@ -159,11 +159,10 @@ content='
 | Cell 1, Row 3 | Cell 2, Row 3 |
 | Cell 1, Row 4 | Cell 2, Row 4 |' />
 
-# BrowserView Component
+## BrowserView
 
 The `<BrowserView>` component provides a powerful and visually engaging way to embed simulated web browser frames within your documentation. This component is ideal for showcasing user interfaces, demonstrating workflows, or highlighting specific website elements within your MDX content.
 
-## Overview
 
 The `BrowserView` component renders a realistic browser window, including a customizable address bar, browser frame, and optional device emulation. This component enhances the user experience by providing context and making it easier for readers to visualize how an interface will appear and behave within a browser context.
 
@@ -171,7 +170,7 @@ The `BrowserView` component renders a realistic browser window, including a cust
 this is the content inside the browser view
 </BrowserView>
 
-## Key Features
+### Key Features
 
 *   **Realistic Browser Frame:** Renders a styled browser frame with a customizable address bar.
 *   **URL Input:** Accepts a `url` prop that populates the browser's address bar.
@@ -180,7 +179,7 @@ this is the content inside the browser view
 *   **Customizable Styling:** Offers props for fine-tuning the visual appearance.
 *   **Interactive Demonstrations:** Perfect for guiding users through complex interface interactions.
 
-## Props
+### props
 
 The `<BrowserView>` component supports the following props:
 
@@ -193,7 +192,7 @@ The `<BrowserView>` component supports the following props:
 | `contentClass` | `string` | `""`          | Custom class to be added to the content wrapper so you can add your own styling.                                                                                     |
 |`iframeProps`| `object` | `{}`        | Additional props to be passed to the iframe element. You can use this to disable the iframe scrolling by adding `{ scrolling : false }` |
 
-## Usage
+### usage
 
 The `<BrowserView>` component is designed to be intuitive and simple to use within your MDX content. The following examples demonstrate how to integrate this component effectively.
 
@@ -204,3 +203,102 @@ The simplest way to use the component is to provide a URL.
 ```md
 <BrowserView url="https://www.example.com" />
 ```
+
+## Directory Structure
+
+The Directory Structure component is a component aimed to show case folder structure in an explanatory and visual way. Here is an example of a Directory Structure Components:
+
+<DirStructure 
+structure='[
+  {
+    "isFolder": true,
+    "name": "Folder 1",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 1-1"
+      },
+      {
+        "isFolder": true,
+        "name": "Subfolder 1-1",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "File 1-1-1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "isFolder": false,
+    "name": "File 2"
+  },
+  {
+    "isFolder": true,
+    "name": "Folder 3",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 3-1"
+      }
+    ]
+  }
+]'
+/>
+
+this is an interactive directory structure component that can be used to show case the folder structure of a project or a file system. The component is highly customizable and can be used to show case any type of folder structure.
+
+The syntax to create a directory structure is as follows:
+
+<Codeblock 
+lang="markdown" 
+content={`
+<DirStructure 
+
+structure='[
+  {
+    "isFolder": true,
+    "name": "Folder 1",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 1-1"
+      },
+      {
+        "isFolder": true,
+        "name": "Subfolder 1-1",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "File 1-1-1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "isFolder": false,
+    "name": "File 2"
+  },
+  {
+    "isFolder": true,
+    "name": "Folder 3",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 3-1"
+      }
+    ]
+  }
+]'
+/>
+`}
+
+/>

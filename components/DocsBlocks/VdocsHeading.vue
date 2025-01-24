@@ -3,16 +3,14 @@
 import { IconLink } from "@tabler/icons-vue";
 import { docsStates } from "../../state";
 import { watch } from "vue";
+import { useHeadSafe } from "../../.nuxt/imports";
 
-watch(docsStates,()=>{
-  console.log(docsStates.value.selectedDocMatter)
-})
 </script>
 
 <template>
-  <div class="w-full text-3xl font-bold py-5 mb-2 flex flex-col gap-2 relative cursor-pointer group">
+  <div class="w-full text-4xl font-bold py-5 mb-2 flex flex-col gap-2 relative cursor-pointer group">
     <div class="flex-place-center relative">
-      <slot />
+      <h1>{{docsStates.selectedDocMatter['title']}}</h1>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

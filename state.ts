@@ -7,7 +7,8 @@ export const docsStates = ref({
     selectedDoc: 'introduction',
     selectedDocMatter: {
         'date': "00.00.00",
-        'author': "Default"
+        'author': "Default",
+        'title': "Default",
     },
     headings: [] // 1) Store all headings here
 });

@@ -57,12 +57,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [
-    '@nuxtjs/tailwindcss',
-    'shadcn-nuxt',
-    '@nuxtjs/color-mode',
-    '@nuxt/fonts',
-  ],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxt/fonts', 'nuxt-shiki'],
 
   tailwindcss: {
     exposeConfig: true,
