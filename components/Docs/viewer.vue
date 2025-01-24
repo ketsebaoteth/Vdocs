@@ -75,7 +75,7 @@ async function loadMDX(componentPath) {
     docsStates.value.selectedDocMatter = matterFromMiddleware.frontMatter.matter;
 
     // 3) Now import the compiled MDX module (for rendering)
-    const module = await import(`${docsBasePath}/${componentPath}`);
+    const module = await import(`../../${docsBasePath}/${componentPath}`);
     mdxContent.value = wrapWithProvider(module.default);
   } catch (error) {
     console.error(error);
