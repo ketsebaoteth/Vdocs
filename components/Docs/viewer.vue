@@ -71,7 +71,7 @@ async function loadMDX(componentPath) {
 
     console.log("Receved from env: ", docsBasePath)
 
-    const matterFromMiddleware = await getFrontMatter(`documentation/${componentPath}`)
+    const matterFromMiddleware = await getFrontMatter(`${docsBasePath}/${componentPath}`)
     docsStates.value.selectedDocMatter = matterFromMiddleware.frontMatter.matter;
 
     // 3) Now import the compiled MDX module (for rendering)
