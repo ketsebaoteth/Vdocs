@@ -60,7 +60,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxt/fonts', 'nuxt-shiki'],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxt/fonts', 'nuxt-shiki', '@nuxt/icon'],
 
   tailwindcss: {
     exposeConfig: true,

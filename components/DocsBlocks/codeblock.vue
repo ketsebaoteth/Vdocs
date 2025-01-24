@@ -8,7 +8,8 @@ import { ref, onMounted } from 'vue'
 const props = defineProps({
   content: { type: String, default: '' },
   lang: { type: String, default: 'plaintext' },
-  details: { type: String, default: '' }
+  details: { type: String, default: '' },
+  icon: { type: String, default: 'terminal-2' }
 })
 
 const htmlReactive = ref('')
@@ -23,7 +24,8 @@ async function highlightCode() {
       body: {
         content: props.content,
         lang: props.lang
-      }
+      },
+      
     })
 
     htmlReactive.value = response.html
@@ -45,8 +47,9 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col gap-0 my-3">
-    <div class="codeblocknav relative w-full py-2 px-3 flex-place-center border-x border-t rounded-t-md border-border">
-      <div class="text-sm px-3 rounded-md py-1 border border-border">
+    <div class="codeblocknav relative w-full py-2 px-2 flex-place-center border-x border-t rounded-t-md border-border">
+      <div class="flex-place-center gap-2 px-3 pl-1 py-1 border-r border-border">
+        <Icon :name="'tabler:'+props.icon" class="size-5 text-muted-foreground" />
         {{ props.lang }}
       </div>
       <p class="text-sm text-muted-foreground ml-3">
@@ -83,7 +86,7 @@ html.dark .shiki span {
 /* Twoslash icons and annotation styling */
 *::-webkit-scrollbar {
   height: 5px;
-  width: 10px;
+  width: 5px;
 }
 *::-webkit-scrollbar-track {
   border-radius: 5px;

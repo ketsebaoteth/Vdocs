@@ -45,9 +45,7 @@ const copyQuick = () => {
     @apply text-muted-foreground text-sm p-2 py-1 border border-border rounded-md bg-background;
 }
 .special-gradient{
-    background: #9d35ff;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ff3489, #06d680);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ff3489, #06d680); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: hsl(var(--primary));  /* fallback for old browsers */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

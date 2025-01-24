@@ -8,7 +8,81 @@ author: "ketsebaot Gizachew"
 
 Vdocs is a tool for creating server-side rendered documentation sites directly from folder strcutre. To achieve this Vdocs uses Nuxt js which is one of the best framework for creating server side rendered sites.
 
--[Todo] - Add a file structure component Here
+
+
+<DirStructure 
+structure='
+[
+  {
+    "isFolder": true,
+    "name": "@v1.0.0",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": true,
+        "name": "Configuration",
+        "isCollapsable": true,
+        "icon": "folder-cog",
+        "children": [
+          {
+            "isFolder": false,
+            "name": "Themeing.mdx",
+            "icon": "markdown"
+          }
+        ]
+      },
+      {
+        "isFolder": true,
+        "name": "Custom Components",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "Components.mdx",
+            "icon": "markdown"
+          }
+        ]
+      },
+      {
+        "isFolder": true,
+        "name": "Getting Started",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "installation~1.mdx",
+            "icon": "markdown"
+          },
+          {
+            "isFolder": false,
+            "name": "Folder Structure~2.mdx",
+            "icon": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "isFolder": true,
+    "name": "@v1.2.0",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": true,
+        "name": "Getting Started",
+        "isCollapsable": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "isFolder": true,
+    "name": "@v1.3.0",
+    "isCollapsable": true,
+    "children": []
+  }
+]
+' />
 
 ## Folder Structure
 

@@ -57,7 +57,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="px-1 py-1 rounded-full border border-border flex-place-center gap-2 relative">
+    <div class="px-1 py-1 bg-background hover:scale-x-[1.2] rounded-full border border-border flex-place-center gap-2 relative">
         <div @click="setTheme('light')" class="p-1 cursor-pointer z-10 text-background" :class="{'text-foreground': SelectedTheme == 'dark' || SelectedTheme == 'default'}">
             <IconSun class="size-4" />
         </div>

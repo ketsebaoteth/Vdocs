@@ -102,6 +102,7 @@ html.dark {
 .twoslash .twoslash-query-line .twoslash-popup-container {
     opacity: 1;
     pointer-events: auto;
+    @apply border border-border;
 }
 
 .twoslash .twoslash-popup-container:hover {
@@ -129,11 +130,13 @@ html.dark .twoslash .twoslash-popup-arrow {
 .twoslash .twoslash-popup-error,
 .twoslash .twoslash-popup-docs {
     padding: 6px 8px !important;
+    @apply max-w-[400px] max-h-[250px] overflow-x-auto;
 }
 
 .twoslash .twoslash-popup-code {
     font-family: var(--twoslash-code-font);
     font-size: var(--twoslash-code-font-size);
+    border-radius: 0px;
 }
 
 html.dark .twoslash .twoslash-popup-code span {
@@ -161,9 +164,7 @@ html.dark .twoslash .twoslash-popup-code span {
 }
 
 .twoslash .twoslash-popup-docs-tags,
-.twoslash .twoslash-popup-docs-tag-name {
-    margin-right: 0.5em;
-}
+.twoslash .twoslash-popup-docs-tag-name {}
 
 .twoslash .twoslash-popup-docs-tag-name {
     font-family: var(--twoslash-code-font);
