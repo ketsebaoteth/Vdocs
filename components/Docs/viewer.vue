@@ -1,3 +1,4 @@
+<!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/Docs/viewer.vue -->
 <script setup>
 import { ref, watch, nextTick, defineComponent, h } from 'vue';
 import { docsStates } from '../../state';
@@ -17,10 +18,9 @@ import 'highlight.js/styles/monokai.css';
 import { matter } from 'vfile-matter';
 import { VFile } from 'vfile';
 import { useRuntimeConfig } from '#imports';
-import { compile } from '@mdx-js/mdx';
-import { createVNode, render } from 'vue';
 
 const mdxContent = ref(null);
+
 
 // Wrap MDX in a provider
 function wrapWithProvider(mdxDefaultExport) {
@@ -45,27 +45,25 @@ function wrapWithProvider(mdxDefaultExport) {
 
 async function loadMDX(componentPath) {
   try {
+
     const { public: { docsBasePath } } = useRuntimeConfig();
-    console.log("Received from nuxt: ", docsBasePath);
+
+    console.log("Receved from nuxt: ", docsBasePath)
 
     // 1) Fetch the raw text so vfile-matter can parse it
-    const res = await fetch(`/docs/${encodeURIComponent(componentPath)}`);
-    if (!res.ok) throw new Error(`Failed to fetch document: ${res.statusText}`);
-
+    const res = await fetch(`/docs/${componentPath}`);
     const text = await res.text();
 
     // 2) Parse frontmatter from that text
     const file = new VFile({ value: text });
     matter(file);
-    docsStates.value.selectedDocMatter = file.data.matter;
+    docsStates.value.selectedDocMatter = file.data.matter
 
-    // 3) Compile the MDX content to Vue component
-    const compiledMDX = await compile(text, { jsx: true, providerImportSource: '@mdx-js/vue' });
-    const mdxModule = await import(`data:text/javascript,${encodeURIComponent(compiledMDX)}`);
-
-    mdxContent.value = wrapWithProvider(mdxModule.default);
+    // 3) Now import the compiled MDX module (for rendering)
+    const module = await import(`${docsBasePath}/${componentPath}`);
+    mdxContent.value = wrapWithProvider(module.default);
   } catch (error) {
-    console.error('Error loading MDX:', error);
+    console.error(error);
     mdxContent.value = null;
   }
 }
