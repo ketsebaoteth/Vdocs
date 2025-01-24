@@ -40,6 +40,9 @@ export default defineNuxtConfig({
 
     }
   },
+  shiki: {
+    defaultTheme: 'nord',
+  },
   vite: {
     plugins: [
       vueJsx(),
@@ -68,7 +71,7 @@ export default defineNuxtConfig({
     prefix: '',
     componentDir: './components/ui'
   },
-  css: ["./assets/css/global.css"],
+  css: ["./assets/css/global.css", "./assets/css/twoslash.css"],
 
   hooks: {
     'builder:watch': (event, path) => {

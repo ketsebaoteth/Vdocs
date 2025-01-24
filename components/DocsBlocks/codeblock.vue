@@ -3,13 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { IconCopy } from '@tabler/icons-vue'
 import { Toaster, toast } from 'vue-sonner'
-import hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-dark-reasonable.css'
-import allLangs from "highlight.js/lib/core";
-import javascript from "highlight.js/lib/languages/javascript";
-
-hljs.registerLanguage('vue', javascript);
-
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   content: { type: String, default: '' },
@@ -17,28 +11,36 @@ const props = defineProps({
   details: { type: String, default: '' }
 })
 
-import { ref, watch } from 'vue'
-const highlightedCode = ref('')
+const htmlReactive = ref('')
 
-watch(
-  () => props.content,
-  (newCode) => {
-    try {
-      highlightedCode.value =
-        props.lang && props.lang !== 'auto'
-          ? hljs.highlight(props.lang, newCode.trim()).value
-          : hljs.highlightAuto(newCode.trim()).value
-    } catch {
-      highlightedCode.value = newCode.trim()
-    }
-  },
-  { immediate: true }
-)
+async function highlightCode() {
+  try {
+    const response = await $fetch('/api/highlight', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        content: props.content,
+        lang: props.lang
+      }
+    })
+
+    htmlReactive.value = response.html
+  } catch (error) {
+    console.error(error)
+    toast.error('Failed to highlight code')
+  }
+}
 
 const copyQuick = () => {
   navigator.clipboard.writeText(props.content.trim())
   toast.success('Copied to clipboard')
 }
+
+onMounted(() => {
+  highlightCode()
+})
 </script>
 
 <template>
@@ -50,47 +52,53 @@ const copyQuick = () => {
       <p class="text-sm text-muted-foreground ml-3">
         {{ props.details }}
       </p>
-      <Button @click="copyQuick()" variant="outline" size="icon" class="ml-auto active:scale-[0.9] text-muted-foreground right-2 top-1">
+      <Button
+        @click="copyQuick()"
+        variant="outline"
+        size="icon"
+        class="ml-auto active:scale-[0.9] text-muted-foreground right-2 top-1"
+      >
         <IconCopy class="size-5" />
       </Button>
     </div>
-    <div class="bg-background border border-border rounded-md mt-0 rounded-t-none w-full p-4 pb-1 codeblock">
-      <pre class="code-content">
-<code v-html="highlightedCode" :class="['language-' + props.lang]"></code>
-      </pre>
+    <div class=" border border-border rounded-md rounded-t-none w-full h-full codeblock">
+      <div v-html="htmlReactive" class="code-container !bg-[var(--shiki-dark-bg)]" :class="['language-' + props.lang]">
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-/* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
-/** {
-  scrollbar-width: thin;
-  scrollbar-color: #397524 #DFE9EB;
-}*/
-
-/* Chrome, Edge and Safari */
+<style>
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+.shiki {
+  @apply !px-3 !py-5 overflow-x-scroll overflow-y-hidden ;
+}
+/* Twoslash icons and annotation styling */
 *::-webkit-scrollbar {
   height: 5px;
   width: 10px;
 }
 *::-webkit-scrollbar-track {
   border-radius: 5px;
-  @apply bg-background;
+  @apply !bg-[var(--shiki-dark-bg)];
 }
-
 *::-webkit-scrollbar-thumb {
   @apply bg-border pb-2 rounded-md;
 }
-
-
 .code-content {
-  @apply overflow-x-auto mb-1 ;
+  @apply overflow-x-auto !m-0;
 }
-.code-content pre{
+.code-content pre {
   @apply m-0 p-0;
 }
-.code-content code{
+.code-content code {
   @apply m-0 p-0;
   white-space: pre;
 }
