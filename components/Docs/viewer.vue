@@ -44,6 +44,25 @@ function wrapWithProvider(mdxDefaultExport) {
   });
 }
 
+async function loadMdxContent(path){
+  try{
+    const res = await $fetch("/middleware/loadMdx",{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        path: path
+      }
+    });
+    return res;
+  }catch(error){
+    console.error(error);
+    toast.error('Failed to load MDX content');
+    return null;
+  }
+}
+
 async function getFrontMatter(path){
   try {
     const res = await $fetch('/middleware/frontmatter',{
@@ -75,8 +94,9 @@ async function loadMDX(componentPath) {
     docsStates.value.selectedDocMatter = matterFromMiddleware.frontMatter.matter;
 
     // 3) Now import the compiled MDX module (for rendering)
-    const module = await import(`../../${docsBasePath}/${componentPath}`);
-    mdxContent.value = wrapWithProvider(module.default);
+    const module = await loadMdxContent(`${docsBasePath}/${componentPath}`);
+    console.log("Module: ", module);
+    mdxContent.value = wrapWithProvider(module);
   } catch (error) {
     console.error(error);
     mdxContent.value = null;

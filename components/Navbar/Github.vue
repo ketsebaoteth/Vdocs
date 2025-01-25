@@ -50,7 +50,7 @@ const opengithub = () => {
 
 <template>
   <div @click="opengithub" class="navbar_github hover:opacity-[0.6] transition-opacity flex-place-center gap-1 border-x border-border">
-    <IconBrandGithub class="size-6 text-primary cursor-pointer" />
+    <IconBrandGithub class="size-6 text-foreground cursor-pointer" />
     <div class="github_details flex flex-col place-items-start">
       <span class="leading-tight text-sm font-semibold"> {{ props.githubLink }}</span>
       <div class="star_fork flex-place-center gap-1">

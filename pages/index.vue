@@ -4,6 +4,7 @@
 
 <template>
     <div>
+        <BackgroundThemeoverlay />
         <BackgroundPatteroverlay />
         <HerosDefault />
         <ExtendersLandingPageEx />
