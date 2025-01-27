@@ -1,9 +1,9 @@
 {
     "functions": {
-        "api/mdx.ts": {
+        "server/api/mdx.ts": {
             "includeFiles": "documentation/**/*"
         },
-        "api/shiki.ts": {
+        "server/api/shiki.ts": {
             "includeFiles": "documentation/**/*"
         }
     }
