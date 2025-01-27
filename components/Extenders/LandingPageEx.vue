@@ -51,59 +51,6 @@
 <script setup>
 import {Button} from '@/components/ui/button'
 import {IconArrowUpRight, IconLanguageHiragana, IconSearch} from '@tabler/icons-vue'
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
 
-onMounted(()=>{
-    gsap.fromTo(".catch1",{
-        scrollTrigger:{
-            trigger: ".catch1",
-            start: "top 80%",
-            end: "bottom 20%",
-            scrub: 1,
-        },
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: "power1.inOut"
-    },{
-        scrollTrigger:{
-            trigger: ".catch1",
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power1.inOut",
-    })
-    gsap.fromTo(".preview-screen",{
-        scrollTrigger:{
-            trigger: ".preview-screen",
-            start: "top 80%",
-            end: "bottom 20%",
-            scrub: 1,
-        },
-        y: 20,
-        opacity: 0,
-        scale: 0.95,
-        duration: 1,
-        ease: "power1.inOut"
-    },{
-        scrollTrigger:{
-            trigger: ".preview-screen",
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
-        },
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: "power1.inOut"
-    })
-})
 </script>
