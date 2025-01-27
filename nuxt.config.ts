@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   nitro: {
     storage: {
       mdxassets: {
-        driver: 'fs',
+        driver: 'vercel-kv',
         base: "./documentation"
       },
     },

@@ -9,6 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "compile-mdx": "node ./scripts/compile.js",
+    "nuxt": "nuxt run dev",
     "dev:prepare": "echo 'No preparation needed'"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@shikijs/transformers": "^2.1.0",
     "@tabler/icons-vue": "^3.28.1",
     "@typescript/twoslash": "^3.2.8",
+    "@vercel/kv": "^1.0.1",
     "@vue/runtime-dom": "^3.5.13",
     "@vueuse/core": "^12.4.0",
     "@vueuse/head": "^2.0.0",
@@ -69,6 +71,7 @@
   },
   "devDependencies": {
     "@hypernym/nuxt-gsap": "^2.4.3",
+    "@nuxtjs/vercel-builder": "^0.25.0",
     "@shikijs/twoslash": "^2.1.0",
     "@types/fs-extra": "^11.0.4",
     "@types/markdown-it": "^14.1.2",
