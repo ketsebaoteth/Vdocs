@@ -99,7 +99,7 @@ export default defineNuxtConfig({
     },
     'nitro:build:public-assets': async () => {
       const srcDir = path.resolve(__dirname, 'documentation');
-      const desDir = path.resolve(__dirname, '.output/public/documentation');
+      const desDir = path.resolve(__dirname, '.output/server/documentation');
       console.log("Copying From ", srcDir, " to ", desDir);
       try {
         await fs.copy(srcDir, desDir);
