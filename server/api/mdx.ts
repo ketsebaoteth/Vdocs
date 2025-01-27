@@ -4,7 +4,6 @@ import { compile } from '@mdx-js/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import matter from 'gray-matter';
-import axios from 'axios';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -26,19 +25,18 @@ export default defineEventHandler(async (event) => {
       };
     }
 
-    // Encode the filePath to handle spaces and other special characters
-    const encodedFilePath = encodeURIComponent(filePath).replace(/%2F/g, '/'); // Keep '/' as is
-    const rawVercelUrl = process.env.VERCEL_URL || 'localhost:3000'
-    const resolvedBaseUrl = rawVercelUrl.startsWith('http')
-      ? rawVercelUrl
-      : `https://${rawVercelUrl}`
+    const fullPath = path.join(process.cwd(), 'documentation', filePath);
 
-    const fullPath = `${resolvedBaseUrl}/documentation/${encodedFilePath}`
-    console.log('Fetching file:', fullPath);
+    if (!fs.existsSync(fullPath)) {
+      console.error('File does not exist:', fullPath);
+      return {
+        statusCode: 404,
+        body: 'File not found',
+      };
+    }
 
-    const response = await axios.get(fullPath);
-    console.log('Response:', response.data);
-    const file = response.data;
+
+    const file = fs.readFileSync(fullPath, 'utf8');
     const parsed = matter(file);
     const frontmatter = parsed.data;
 
@@ -47,8 +45,7 @@ export default defineEventHandler(async (event) => {
       outputFormat: 'function-body',
       providerImportSource: '@mdx-js/vue',
       remarkPlugins: [remarkGfm, remarkFrontmatter],
-    });
-
+    })
     return {
       body: {
         content: String(compileMdx),

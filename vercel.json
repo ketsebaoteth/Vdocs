@@ -1,0 +1,10 @@
+{
+    "functions": {
+        "api/mdx.ts": {
+            "includeFiles": "documentation/**/*"
+        },
+        "api/shiki.ts": {
+            "includeFiles": "documentation/**/*"
+        }
+    }
+}
