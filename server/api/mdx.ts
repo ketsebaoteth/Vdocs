@@ -7,14 +7,19 @@ import matter from 'gray-matter';
 
 export default defineEventHandler(async (event) => {
   try {
+    // Ensure the request method is POST
     if (event.req.method !== 'POST') {
       console.warn('Mdx Ignoring non-POST request:', {
         method: event.req.method,
         url: event.req.url,
       });
-      return;
+      return {
+        statusCode: 405,
+        body: 'Method Not Allowed',
+      };
     }
 
+    // Read the file path from the request body
     const { filePath } = await readBody(event);
 
     if (!filePath) {
@@ -25,44 +30,50 @@ export default defineEventHandler(async (event) => {
       };
     }
 
-    // const fullPath = path.join(process.cwd(), 'documentation', filePath);
-
-    // if (!fs.existsSync(fullPath)) {
-    //   console.error('File does not exist:', fullPath);
-    //   return {
-    //     statusCode: 404,
-    //     body: 'File not found',
-    //   };
-    // }
-
-
-    // const file = fs.readFileSync(fullPath, 'utf8');
+    // Use the storage API to fetch the file
     const storage = useStorage('mdxassets');
     let file = await storage.getItem(filePath).then((x) => x?.toString());
-    if (file === undefined) {
-      file = "Something Wrong Happened While Reading MDX file by using useStorage";
+
+    if (!file) {
+      console.log('What was found: ', storage);
+      console.error('File not found or could not be read:', filePath);
+      return {
+        statusCode: 404,
+        body: 'File not found or could not be read',
+      };
     }
-    console.log("File Content: ", file);
+
+    console.log('File Content:', file);
+
+    // Parse the frontmatter using gray-matter
     const parsed = matter(file);
     const frontmatter = parsed.data;
 
+    // Compile the MDX content
     const compileMdx = await compile(file, {
       jsxImportSource: 'vue',
       outputFormat: 'function-body',
       providerImportSource: '@mdx-js/vue',
       remarkPlugins: [remarkGfm, remarkFrontmatter],
-    })
+    });
+
     return {
       body: {
         content: String(compileMdx),
         frontmatter: JSON.stringify(frontmatter),
-      }
+      },
     };
   } catch (e: unknown) {
-    console.error('Error reading file:', e);
+    // Log the error for debugging
+    console.error('Error processing MDX file:', e);
+
+    // Return a 500 error with the error message
     return {
       statusCode: 500,
-      body: (e as Error).message,
+      body: {
+        message: 'Internal Server Error',
+        error: (e as Error).message,
+      },
     };
   }
 });
