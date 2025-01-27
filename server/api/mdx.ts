@@ -4,6 +4,7 @@ import { compile } from '@mdx-js/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import matter from 'gray-matter';
+import axios from 'axios';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -24,19 +25,13 @@ export default defineEventHandler(async (event) => {
         body: 'No file path provided',
       };
     }
+    const baseUrl = process.env.VERCEL_URL || 'http://localhost:3000';
+    const fullPath = `${baseUrl}/documentation/${filePath}`;
+    console.log('Fetching file:', fullPath);
 
-    const fullPath = path.join(process.cwd(), 'documentation', filePath);
-
-    if (!fs.existsSync(fullPath)) {
-      console.error('File does not exist:', fullPath);
-      return {
-        statusCode: 404,
-        body: 'File not found',
-      };
-    }
-
-
-    const file = fs.readFileSync(fullPath, 'utf8');
+    const response = await axios.get(fullPath);
+    console.log('Response:', response.data);
+    const file = response.data;
     const parsed = matter(file);
     const frontmatter = parsed.data;
 
