@@ -25,18 +25,24 @@ export default defineEventHandler(async (event) => {
       };
     }
 
-    const fullPath = path.join(process.cwd(), 'documentation', filePath);
+    // const fullPath = path.join(process.cwd(), 'documentation', filePath);
 
-    if (!fs.existsSync(fullPath)) {
-      console.error('File does not exist:', fullPath);
-      return {
-        statusCode: 404,
-        body: 'File not found',
-      };
+    // if (!fs.existsSync(fullPath)) {
+    //   console.error('File does not exist:', fullPath);
+    //   return {
+    //     statusCode: 404,
+    //     body: 'File not found',
+    //   };
+    // }
+
+
+    // const file = fs.readFileSync(fullPath, 'utf8');
+    const storage = useStorage('mdxassets');
+    let file = await storage.getItem(filePath).then((x) => x?.toString());
+    if (file === undefined) {
+      file = "Something Wrong Happened While Reading MDX file by using useStorage";
     }
-
-
-    const file = fs.readFileSync(fullPath, 'utf8');
+    console.log("File Content: ", file);
     const parsed = matter(file);
     const frontmatter = parsed.data;
 
