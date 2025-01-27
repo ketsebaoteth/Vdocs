@@ -20,9 +20,9 @@
   import { onMounted } from 'vue';
   import gsap from 'gsap';
   import SplitType from 'split-type';
-  import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+  // import ScrollTrigger from 'gsap/ScrollTrigger';
   
-  gsap.registerPlugin(ScrollTrigger)
+  // gsap.registerPlugin(ScrollTrigger)
   
   const splitTextForAnimation = () => {
     const text = new SplitType("#titleText", { types: "chars",  });

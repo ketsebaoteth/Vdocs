@@ -71,79 +71,79 @@
 <script setup>
 import { ref,onMounted } from 'vue';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+// import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 // funny name for a function, but it does the job 😁
-const animateWiggle = () => {
-  gsap.to('.zap', {
-    translateY: 20,
-    duration: 2,
-    repeat: -1,
-    ease: 'power1.inOut',
-    yoyo: true
-  });
-  gsap.to('.nuxt', {
-    translateY: 10,
-    duration: 1,
-    repeat: -1,
-    ease: 'power1.inOut',
-    yoyo: true
-  });
-};
+// const animateWiggle = () => {
+//   gsap.to('.zap', {
+//     translateY: 20,
+//     duration: 2,
+//     repeat: -1,
+//     ease: 'power1.inOut',
+//     yoyo: true
+//   });
+//   gsap.to('.nuxt', {
+//     translateY: 10,
+//     duration: 1,
+//     repeat: -1,
+//     ease: 'power1.inOut',
+//     yoyo: true
+//   });
+// };
 const goDownInductorsCount = ref(8);
-onMounted(() => {
-  animateWiggle();
-  gsap.fromTo(
-    ".copyright-terms",{
-      scrollTrigger: {
-        trigger: ".copyright-terms",
-        start: "top 80%",
-        end: "bottom 20%",
-        scrub: 1,
-      },
-      x: 0,
-      opacity: 1,
-      duration: 1,
-      ease: "power1.inOut"
-    },{
-      scrollTrigger: {
-        trigger: ".copyright-terms",
-        start: "top 80%",
-        end: "bottom 70%",
-        scrub: 1,
-      },
-      x: 20,
-      opacity: 0,
-      duration: 1,
-      ease: "power1.inOut",
-    }
-  )
-  gsap.fromTo(
-    ".scrolldownbtn",{
-      scrollTrigger: {
-        trigger: ".scrolldownbtn",
-        start: "top 80%",
-        end: "bottom 20%",
-        scrub: 1,
-      },
-      x: 0,
-      opacity: 1,
-      duration: 1,
-      ease: "power1.inOut"
-    },{
-      scrollTrigger: {
-        trigger: ".scrolldownbtn",
-        start: "top 80%",
-        end: "bottom 70%",
-        scrub: 1,
-      },
-      x: -20,
-      opacity: 0,
-      duration: 1,
-      ease: "power1.inOut",
-    }
-  )
-});
+// onMounted(() => {
+//   animateWiggle();
+//   gsap.fromTo(
+//     ".copyright-terms",{
+//       scrollTrigger: {
+//         trigger: ".copyright-terms",
+//         start: "top 80%",
+//         end: "bottom 20%",
+//         scrub: 1,
+//       },
+//       x: 0,
+//       opacity: 1,
+//       duration: 1,
+//       ease: "power1.inOut"
+//     },{
+//       scrollTrigger: {
+//         trigger: ".copyright-terms",
+//         start: "top 80%",
+//         end: "bottom 70%",
+//         scrub: 1,
+//       },
+//       x: 20,
+//       opacity: 0,
+//       duration: 1,
+//       ease: "power1.inOut",
+//     }
+//   )
+//   gsap.fromTo(
+//     ".scrolldownbtn",{
+//       scrollTrigger: {
+//         trigger: ".scrolldownbtn",
+//         start: "top 80%",
+//         end: "bottom 20%",
+//         scrub: 1,
+//       },
+//       x: 0,
+//       opacity: 1,
+//       duration: 1,
+//       ease: "power1.inOut"
+//     },{
+//       scrollTrigger: {
+//         trigger: ".scrolldownbtn",
+//         start: "top 80%",
+//         end: "bottom 70%",
+//         scrub: 1,
+//       },
+//       x: -20,
+//       opacity: 0,
+//       duration: 1,
+//       ease: "power1.inOut",
+//     }
+//   )
+// });
 </script>
 
 <style scoped>
