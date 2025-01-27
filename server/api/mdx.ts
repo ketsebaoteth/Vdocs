@@ -25,8 +25,11 @@ export default defineEventHandler(async (event) => {
         body: 'No file path provided',
       };
     }
+
+    // Encode the filePath to handle spaces and other special characters
+    const encodedFilePath = encodeURIComponent(filePath).replace(/%2F/g, '/'); // Keep '/' as is
     const baseUrl = process.env.VERCEL_URL || 'http://localhost:3000';
-    const fullPath = `${baseUrl}/documentation/${filePath}`;
+    const fullPath = `${baseUrl}/documentation/${encodedFilePath}`;
     console.log('Fetching file:', fullPath);
 
     const response = await axios.get(fullPath);
@@ -40,7 +43,8 @@ export default defineEventHandler(async (event) => {
       outputFormat: 'function-body',
       providerImportSource: '@mdx-js/vue',
       remarkPlugins: [remarkGfm, remarkFrontmatter],
-    })
+    });
+
     return {
       body: {
         content: String(compileMdx),
