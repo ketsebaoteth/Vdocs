@@ -12,11 +12,7 @@ import path from 'path'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-
   nitro: {
-    publicAssets: [
-      { baseURL: '/doc', dir: 'documentation' }
-    ],
     compressPublicAssets: {
       brotli: true,
       gzip: true
@@ -32,6 +28,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Vdocs',
+
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -56,7 +53,6 @@ export default defineNuxtConfig({
         remarkPlugins: [remarkGfm, remarkFrontmatter],
         providerImportSource: '@mdx-js/vue',
       }),
-
     ],
     resolve: {
       alias: {
@@ -70,7 +66,9 @@ export default defineNuxtConfig({
       docsBasePath: process.env.DOCS_BASE_PATH || '../../public/docs',
     },
   },
-
+  plugins: [
+    "~/plugins/markdown-it.js",
+  ],
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxt/fonts', 'nuxt-shiki', '@nuxt/icon'],
 
   tailwindcss: {

@@ -51,7 +51,7 @@ onUnmounted(() => {
         </div>
         <NavbarSearchBar />
         <div class="links ml-auto flex-place-center gap-2">
-            <NavbarLink text="Documentation" route="/docs" />
+            <NavbarLink text="Documentation" route="/docs/@v1.0.0/Installation.md" />
             <NavbarLink text="Blog" />
             <NavbarLink text="ChangeLogs" />
             <NavbarLink text="About" :has-dropdown="true">

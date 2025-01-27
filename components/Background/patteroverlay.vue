@@ -1,7 +1,7 @@
 <!-- filepath: /c:/Users/admin/Desktop/Full Typescript Projects/cognito 1.0/Vdocs/components/Background/patteroverlay.vue -->
 <template>
   <!-- The overlay is absolutely positioned and non-interactive -->
-  <div class="absolute spec-grad   bg-gradient-to-t  from-5% -z-10 top-0 left-0 w-full h-full pointer-events-none">
+  <div class="absolute  bg-gradient-to-t  from-5% top-0 left-0 w-full h-full">
     <div class="zap absolute top-48 rotate-[-15deg] left-48 -z-20 text-muted">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,8 @@
         />
       </svg>
     </div>
-    <div class="scrolldownbtn absolute bottom-4 left-1/2 -translate-x-1/2">
-      <button class="px-3 flex-place-center text-sm py-1 border rounded-full border-border bg-background">
+    <div class="scrolldownbtn absolute bottom-4 left-4 ">
+      <button class="px-3 flex-place-center text-xs py-1 border rounded-full border-border bg-background">
         <div class="w-5 h-3 flex flex-col items-start justify-center">
           <span
             class="coin border-l border-border"
@@ -55,6 +55,15 @@
         Scroll Down
       </button>
     </div>
+    <div class="copyright-terms flex place-items-center absolute right-4 bottom-4">
+      
+      <div class="bg-background px-3 py-1 rounded-full text-xs text-foreground">
+        <span>Made With 💖 By K</span>
+      </div>
+      <div class="bg-background px-0.5 py-0.5 rounded-full text-xs text-foreground flex place-items-center justify-center">
+        <Icon name="tabler:arrow-up-right" class="size-5 text-muted-foreground" />
+      </div>
+    </div>
     
   </div>
 </template>
@@ -62,6 +71,7 @@
 <script setup>
 import { ref,onMounted } from 'vue';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 // funny name for a function, but it does the job 😁
 const animateWiggle = () => {
@@ -83,13 +93,61 @@ const animateWiggle = () => {
 const goDownInductorsCount = ref(8);
 onMounted(() => {
   animateWiggle();
+  gsap.fromTo(
+    ".copyright-terms",{
+      scrollTrigger: {
+        trigger: ".copyright-terms",
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+      },
+      x: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power1.inOut"
+    },{
+      scrollTrigger: {
+        trigger: ".copyright-terms",
+        start: "top 80%",
+        end: "bottom 70%",
+        scrub: 1,
+      },
+      x: 20,
+      opacity: 0,
+      duration: 1,
+      ease: "power1.inOut",
+    }
+  )
+  gsap.fromTo(
+    ".scrolldownbtn",{
+      scrollTrigger: {
+        trigger: ".scrolldownbtn",
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+      },
+      x: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power1.inOut"
+    },{
+      scrollTrigger: {
+        trigger: ".scrolldownbtn",
+        start: "top 80%",
+        end: "bottom 70%",
+        scrub: 1,
+      },
+      x: -20,
+      opacity: 0,
+      duration: 1,
+      ease: "power1.inOut",
+    }
+  )
 });
 </script>
 
 <style scoped>
-.spec-grad{
-  background: linear-gradient(5deg,hsl(var(--primary)) 0%,transparent 35%);  /* fallback for old browsers */
-}
+
 .coin {
   @apply absolute size-[8px] mb-1 bg-primary rounded-full;
   animation: coin 2s infinite;

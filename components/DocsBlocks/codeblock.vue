@@ -16,7 +16,7 @@ const htmlReactive = ref('')
 
 async function highlightCode() {
   try {
-    const response = await $fetch('/api/highlight', {
+    const response = await $fetch('/api/shiki', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

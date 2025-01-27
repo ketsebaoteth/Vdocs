@@ -11,10 +11,12 @@ export default defineEventHandler(async (event) => {
     return
   }
 
+  console.log("Highlighting code Request Recived");
+
   const body = await readBody(event)
-  console.log('Request body:', body)
 
   const { content, lang } = body
+
 
   try {
     const html = await codeToHtml(content,{

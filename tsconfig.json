@@ -3,6 +3,7 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "moduleResolution": "node",
+    "module": "ESNext",
     "paths": {
       "@/components/*": [
         "./components/*"

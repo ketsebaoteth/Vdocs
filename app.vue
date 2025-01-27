@@ -28,7 +28,13 @@ watch(
 );
 
 const toastOptions = {
-  class: "bg-background text-foreground border-green-500 bg-gradient-to-r from-green-100 dark:from-green-900 to-background",
+  class: "bg-background text-foreground border-primary bg-primary dark:bg-primary",
   descriptionClass: 'my-toast-description'
 };
+
+useHead({
+  script: [{
+    children: "(function() { const savedTheme = localStorage.getItem('theme') || 'default'; const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches; if (savedTheme === 'dark' || (savedTheme === 'default' && isDarkMode)) { document.documentElement.classList.add('dark'); } else { document.documentElement.classList.remove('dark'); } })(); "
+  }]
+})
 </script>

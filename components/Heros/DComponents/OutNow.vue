@@ -9,8 +9,31 @@
     </div>
 </template>
 
+<script setup>
+import gsap from 'gsap';
+import { onMounted } from 'vue';
+
+function animateUp(){
+    gsap.fromTo(".outnow",{
+        opacity: 0,
+        duration: 0.5,
+        ease: "power1.inOut"
+    },{
+        opacity: 1,
+        duration: 0.5,
+        ease: "power1.inOut"
+    })
+}
+onMounted(()=>{
+    animateUp();
+})
+</script>
 
 <style scoped>
+.outnow{
+    transform: scale(0.9);
+    opacity: 0;
+}
 .arrow-right{
     transition: transform 0.2s ease-in-out !important;
 }
