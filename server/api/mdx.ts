@@ -31,26 +31,28 @@ export default defineEventHandler(async (event) => {
     }
 
     // Use the storage API to fetch the file
-    const storage = useStorage('mdxassets');
-    let file = await storage.getItem(filePath).then((x) => x?.toString());
+    const sanitizedFilePath = path.normalize(filePath).replace(/^(\.\.(\/|\\|$))+/, '');
 
-    if (!file) {
-      console.log('What was found: ', storage);
-      console.error('File not found or could not be read:', filePath);
+    const fullPath = path.join(process.cwd(), 'documentation', sanitizedFilePath);
+
+    // Check if the file exists
+    if (!fs.existsSync(fullPath)) {
+      console.error('File does not exist:', fullPath);
       return {
         statusCode: 404,
-        body: 'File not found or could not be read',
+        body: `File not found: ${fullPath}`,
       };
     }
 
-    console.log('File Content:', file);
+    const fileContent = fs.readFileSync(fullPath, 'utf-8');
+
 
     // Parse the frontmatter using gray-matter
-    const parsed = matter(file);
+    const parsed = matter(fileContent);
     const frontmatter = parsed.data;
 
     // Compile the MDX content
-    const compileMdx = await compile(file, {
+    const compileMdx = await compile(fileContent, {
       jsxImportSource: 'vue',
       outputFormat: 'function-body',
       providerImportSource: '@mdx-js/vue',

@@ -5,20 +5,20 @@ import remarkGfm from 'remark-gfm'
 import { resolve } from 'pathe'
 import { exec } from 'child_process'
 import mdx from '@mdx-js/rollup'
-import { title } from 'process'
 import CompressionPlugin from 'compression-webpack-plugin'
 import fs from 'fs-extra';
 import path from 'path'
 
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   nitro: {
-    storage: {
-      mdxassets: {
-        driver: 'vercel-kv',
-        base: "./documentation"
-      },
-    },
+    serverAssets: [
+      {
+        baseName: 'docs',
+        dir: 'documentation'
+      }
+    ],
     compressPublicAssets: {
       brotli: true,
       gzip: true
@@ -105,7 +105,7 @@ export default defineNuxtConfig({
     },
     'nitro:build:public-assets': async () => {
       const srcDir = path.resolve(__dirname, 'documentation');
-      const desDir = path.resolve(__dirname, 'var/task/documentation');
+      const desDir = path.resolve(__dirname, '.output/server/documentation');
       console.log("Copying From ", srcDir, " to ", desDir);
       try {
         await fs.copy(srcDir, desDir);

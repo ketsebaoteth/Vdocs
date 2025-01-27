@@ -54,7 +54,7 @@ const vueComponent = defineAsyncComponent(async () => {
         'Content-Type': 'application/json',
       },
       body: {
-        filePath: props.slug,
+        filePath: props.slug + '.mdx',
       },
     });
 
@@ -90,7 +90,7 @@ const vueComponent = defineAsyncComponent(async () => {
   <div id="mdx_display" class="mdx_display">
     <DocsGoToTop />
     <DocsBlocksVdocsHeading />
-    <component :is="vueComponent" /> <!-- Use the compiled component directly -->
+    <component :is="vueComponent" />
     <div class="flex gap-2 my-5">
       <DocsPrePage prePage="prepage" />
       <DocsNextPage nextPage="nextpage" />
