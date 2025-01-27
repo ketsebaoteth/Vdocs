@@ -28,8 +28,12 @@ export default defineEventHandler(async (event) => {
 
     // Encode the filePath to handle spaces and other special characters
     const encodedFilePath = encodeURIComponent(filePath).replace(/%2F/g, '/'); // Keep '/' as is
-    const baseUrl = process.env.VERCEL_URL || 'http://localhost:3000';
-    const fullPath = `${baseUrl}/documentation/${encodedFilePath}`;
+    const rawVercelUrl = process.env.VERCEL_URL || 'localhost:3000'
+    const resolvedBaseUrl = rawVercelUrl.startsWith('http')
+      ? rawVercelUrl
+      : `https://${rawVercelUrl}`
+
+    const fullPath = `${resolvedBaseUrl}/documentation/${encodedFilePath}`
     console.log('Fetching file:', fullPath);
 
     const response = await axios.get(fullPath);
