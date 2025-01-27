@@ -1,0 +1,109 @@
+---
+title: "Vdocs Folder Structure"
+date: 2025-23-01
+author: "ketsebaot Gizachew"
+---
+
+## Basic highlight
+
+Vdocs is a tool for creating server-side rendered documentation sites directly from folder strcutre. To achieve this Vdocs uses Nuxt js which is one of the best framework for creating server side rendered sites.
+
+
+
+<DirStructure 
+structure='
+[
+  {
+    "isFolder": true,
+    "name": "@v1.0.0",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": true,
+        "name": "Configuration",
+        "isCollapsable": true,
+        "icon": "folder-cog",
+        "children": [
+          {
+            "isFolder": false,
+            "name": "Themeing.mdx",
+            "icon": "markdown"
+          }
+        ]
+      },
+      {
+        "isFolder": true,
+        "name": "Custom Components",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "Components.mdx",
+            "icon": "markdown"
+          }
+        ]
+      },
+      {
+        "isFolder": true,
+        "name": "Getting Started",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "installation~1.mdx",
+            "icon": "markdown"
+          },
+          {
+            "isFolder": false,
+            "name": "Folder Structure~2.mdx",
+            "icon": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "isFolder": true,
+    "name": "@v1.2.0",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": true,
+        "name": "Getting Started",
+        "isCollapsable": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "isFolder": true,
+    "name": "@v1.3.0",
+    "isCollapsable": true,
+    "children": []
+  }
+]
+' />
+
+## Folder Structure
+
+To work with Vdocs the most important folders to keep an eye on are:
+ - `public/docs` - This is where all the documentation files are stored. The folder structure inside this directory is used to generate the documentation site's navigation.
+ - `public/docs/@v<version>` - This is where the versioned documentation files are stored. The version number is used to generate the version dropdown in the navigation bar.
+ - `config` - This is where all the configs that alter Vdocs are stored.
+ - `components/Extenders` - This is a special folder where each element inside of this folder is imported into different places in the vdocs site which means adding new content here is a great option if you want to extend upon the basic vdocs starter.
+
+## Docs File Structure
+
+The file structure inside the `/docs/` directory is used to generate the navigation on your documentation site. Here's a quick overview of the file structure:
+
+In The `/public/docs` folder you first have folders for different versions of your documentation. If you dont have any versioned yet you will see only the default `@v1.0.0` folder. Inside the versioned folders you will see the following structure:
+
+Inside the versioned folders you will see a folder representing a catagory. vdocs translates each folder in your docs page as a catagory and creates a collapsable section for it.Then inside of each folder you have `.mdx` files which represent the actual documentation pages.
+
+Here is an preview of the full file structure:
+
+
+## Config File Structure
+
+The config file structure is used to alter the Vdocs site. Here is a quick overview of the config file structure:
+

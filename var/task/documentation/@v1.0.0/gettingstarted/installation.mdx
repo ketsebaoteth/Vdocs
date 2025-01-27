@@ -1,0 +1,37 @@
+---
+date: "2021-01-01"
+author: "ketsebaot Gizachew"
+title: "Installing Vdocs"
+---
+
+## Creating project
+Prerequisites:
+ - Node.js-'18.x' or newer (but we recommend the latest LTS version)
+ - Text Editor-There is no specific text editor required, but we recommend using the following setup:
+    - Visual Studio Code
+    - Mdx Extension ( For better MDX support ).
+ - npm (or compatible package manager 'yarn', 'bun' or 'pnpm' are supported)
+ - Git (optional)
+
+if you are using Visual Studio Code, you can open the integrated terminal by pressing `Ctrl + ` ` and use the following command to create a new Vdocs project Setup:
+
+<TabbedCodeBlock tabs='[
+{"name":"NPM","command":"npx create vdocs@latest"},
+{"name":"BUN","command":"bun create vdocs@latest"},
+{"name":"YARN","command":"yarn create vdocs@latest"},
+{"name":"PNPM","command":"pnpm create vdocs@latest"}
+]' />
+
+then you can navigate to the project director and run the following command to install dependencies `vdocs` has:
+
+<Codeblock lang="shell" details="~vscodeTerminal~" content="npm install //or any compatible package manager as always" />
+
+after running the command, you vdocs project is ready to run. you can start the project by running the following command:
+
+<Codeblock lang="shell" details="~vscodeTerminal~" content="npm run dev //or any compatible package manager as always" />
+
+this will start the development server and you can access the project by navigating to `http://localhost:3000` in your browser.
+
+## Next Steps
+
+Now that you have finished creating your project, you can start modifing the project to fit your needs. you can start by modifying the `config` directory to change the site's configuration, or you can start by modifying the `docs` directory to change the documentation pages.

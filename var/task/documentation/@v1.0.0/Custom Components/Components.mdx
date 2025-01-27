@@ -1,0 +1,313 @@
+---
+date: "2025-01-13"
+author: Ketsebaot-Gizachew
+title: Components
+---
+
+VDocs provides a suite of custom components that enhance the functionality and visual appeal of your documentation written in MDX. These components are designed for seamless integration and ease of use.
+
+## Tabbed Code Blocks
+
+The `<TabbedCodeBlock>` component enables you to display code snippets within interactive tabs, improving organization and clarity. This is particularly useful when demonstrating the same task across multiple platforms or environments.
+
+<TabbedCodeBlock tabs='[
+  { "name": "NPM", "command": "npx create vdocs@latest " },
+  { "name": "Bun", "command": "bun init vdocs@latest //for bun" },
+  { "name": "Yarn", "command": "yarn create vdocs@latest //for yarn" }
+]' />
+
+**Usage:**
+
+The `<TabbedCodeBlock>` component accepts a `tabs` prop which is an array of objects. Each object defines the properties of the tab such as the name and the command.
+
+**MDX Syntax Example:**
+
+<Codeblock details="docs/v1.0.0/Example/example.mdx" lang="typescript" content=" 
+// @errors: 2540
+console.log((1 + 2 + 3 + 4).toFixed(2)) 
+//                            ^|
+
+/** A Basic Todo interface*/
+interface Todo {
+  title: string;
+}
+
+const todo: Readonly<Todo> = {
+  title: 'Delete inactive users',
+//  ^?
+}
+
+todo.title = 'Hello'
+
+"/>
+
+This translates to the following Vue component syntax:
+
+<Codeblock lang="vue"
+content='
+<TabbedCodeBlock tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; }, { &quot;name&quot;: &quot;Yarn&quot;, &quot;command&quot;: &quot;yarn create vdocs@latest&quot; } ]" />
+'/>
+
+---
+
+## Callouts
+
+The `<Callout>` component is used to draw attention to specific information within your documentation, such as important notes, warnings, errors, or success messages. Callouts provide a visually distinct way to highlight key points.
+
+A typical **Callout** looks like this:
+
+<Callout type="error" header="This is an error message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+**Types of Callouts:**
+
+The `type` prop determines the visual styling and semantic meaning of the callout. Supported values include:
+
+*   `info`: Used for general informational notes (Default).
+*   `warning`: Indicates a potential issue or caution.
+*   `error`: Highlights critical errors or problems.
+*   `success`: Signals a successful operation or positive outcome.
+
+**Other Available Props:**
+
+*   `header`: Sets the title/heading of the callout.
+*   `content`: Contains the main body text of the callout.
+
+**Examples:**
+
+<Callout type="info" header="This is an info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+<Callout type="warning" header="This is a warning message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+<Callout type="success" header="This is a success message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+**MDX Syntax Example:**
+
+<Codeblock lang="markdown"
+content='<Callout type="warning" header="Heads Up!" content="Always double-check your configuration settings before deploying." />' />
+
+This is equivalent to the following vue component markup:
+
+<Codeblock lang="vue"
+content='
+<Callout type="info" header="This is an info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />' />
+
+---
+
+## Tables
+
+VDocs supports the standard Markdown table syntax, rendering them as styled and accessible HTML tables. This allows you to present structured data effectively.
+
+A basic **Table** looks like this:
+
+| Column 1      | Column 2      |
+| ------------- | ------------- |
+| Cell 1, Row 1 | Cell 2, Row 1 |
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |
+
+**Markdown Table Syntax:**
+
+The syntax for creating a table in Markdown involves using pipes (`|`) to separate columns and hyphens (`-`) to create a header row separator:
+
+```markdown
+| Column 1      | Column 2      |
+| ------------- | ------------- |
+| Cell 1, Row 1 | Cell 2, Row 1 |
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |
+```
+
+This is translated into the following:
+
+<Codeblock lang="markdown"
+content='| Column 1      | Column 2      |
+| ------------- | ------------- |
+| Cell 1, Row 1 | Cell 2, Row 1 |
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |' />
+
+Note that VDocs will automatically recognize and style markdown table syntax.
+
+---
+
+### Table usage
+
+This section demonstrates how to use these components together to create a cohesive and informative page in MDX.
+
+```md
+# Example Usage
+
+<TabbedCodeBlock tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; }, { &quot;name&quot;: &quot;Yarn&quot;, &quot;command&quot;: &quot;yarn create vdocs@latest&quot; } ]" />
+
+<Callout type="info" header="Important Note" content="Remember to install all required dependencies before running the application." />
+
+| Feature        | Status    |
+|----------------|-----------|
+| Tabbed Code Blocks | Stable  |
+| Callouts       | Stable  |
+| Tables          | Stable  |
+```
+
+This can be rendered with VDocs by writing the following code:
+
+<Codeblock lang="markdown"
+content='
+# Example Usage 
+
+<TabbedCodeBlock tabs="[ { &quot;name&quot;: &quot;NPM&quot;, &quot;command&quot;: &quot;npx create vdocs@latest&quot; }, { &quot;name&quot;: &quot;Bun&quot;, &quot;command&quot;: &quot;bun init vdocs@latest&quot; }, { &quot;name&quot;: &quot;Yarn&quot;, &quot;command&quot;: &quot;yarn create vdocs@latest&quot; } ]" />
+
+<Callout type="info" header="This is an info message" content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to " />
+
+| Column 1      | Column 2      |
+| ------------- | ------------- |
+| Cell 1, Row 1 | Cell 2, Row 1 |
+| Cell 1, Row 2 | Cell 2, Row 2 |
+| Cell 1, Row 3 | Cell 2, Row 3 |
+| Cell 1, Row 4 | Cell 2, Row 4 |' />
+
+## BrowserView
+
+The `<BrowserView>` component provides a powerful and visually engaging way to embed simulated web browser frames within your documentation. This component is ideal for showcasing user interfaces, demonstrating workflows, or highlighting specific website elements within your MDX content.
+
+
+The `BrowserView` component renders a realistic browser window, including a customizable address bar, browser frame, and optional device emulation. This component enhances the user experience by providing context and making it easier for readers to visualize how an interface will appear and behave within a browser context.
+
+<BrowserView url="https://www.example.com" >
+this is the content inside the browser view
+</BrowserView>
+
+### Key Features
+
+*   **Realistic Browser Frame:** Renders a styled browser frame with a customizable address bar.
+*   **URL Input:** Accepts a `url` prop that populates the browser's address bar.
+*   **Content Embedding:**  Allows embedding any HTML content inside the browser frame.
+*   **Optional Device Emulation:** Supports device-specific emulation for responsive design.
+*   **Customizable Styling:** Offers props for fine-tuning the visual appearance.
+*   **Interactive Demonstrations:** Perfect for guiding users through complex interface interactions.
+
+### props
+
+The `<BrowserView>` component supports the following props:
+
+| Prop          | Type     | Default Value | Description                                                                                                                                                                 |
+| ------------- | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `url`          | `string` | `""`          | The URL to be displayed in the browser's address bar.                                                                                                                     |
+| `device`       | `string` | `null`        | Optionally emulate a device. Valid values include: `"mobile"`, `"tablet"`, or `null`. If a `device` is not selected the component will be displayed in desktop view.           |
+| `theme`        | `string` | `"light"`      | The theme of the browser UI, either `"light"` or `"dark"`.                                                                                                              |
+| `header`       | `boolean` | `true`          | Toggle the visibility of the address bar header. Set to `false` to hide the address bar.                                                                                         |
+| `contentClass` | `string` | `""`          | Custom class to be added to the content wrapper so you can add your own styling.                                                                                     |
+|`iframeProps`| `object` | `{}`        | Additional props to be passed to the iframe element. You can use this to disable the iframe scrolling by adding `{ scrolling : false }` |
+
+### usage
+
+The `<BrowserView>` component is designed to be intuitive and simple to use within your MDX content. The following examples demonstrate how to integrate this component effectively.
+
+**Basic Example:**
+
+The simplest way to use the component is to provide a URL.
+
+```md
+<BrowserView url="https://www.example.com" />
+```
+
+## Directory Structure
+
+The Directory Structure component is a component aimed to show case folder structure in an explanatory and visual way. Here is an example of a Directory Structure Components:
+
+<DirStructure 
+structure='[
+  {
+    "isFolder": true,
+    "name": "Folder 1",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 1-1"
+      },
+      {
+        "isFolder": true,
+        "name": "Subfolder 1-1",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "File 1-1-1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "isFolder": false,
+    "name": "File 2"
+  },
+  {
+    "isFolder": true,
+    "name": "Folder 3",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 3-1"
+      }
+    ]
+  }
+]'
+/>
+
+this is an interactive directory structure component that can be used to show case the folder structure of a project or a file system. The component is highly customizable and can be used to show case any type of folder structure.
+
+The syntax to create a directory structure is as follows:
+
+<Codeblock 
+lang="markdown" 
+content={`
+<DirStructure 
+
+structure='[
+  {
+    "isFolder": true,
+    "name": "Folder 1",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 1-1"
+      },
+      {
+        "isFolder": true,
+        "name": "Subfolder 1-1",
+        "isCollapsable": true,
+        "children": [
+          {
+            "isFolder": false,
+            "name": "File 1-1-1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "isFolder": false,
+    "name": "File 2"
+  },
+  {
+    "isFolder": true,
+    "name": "Folder 3",
+    "isCollapsable": true,
+    "children": [
+      {
+        "isFolder": false,
+        "name": "File 3-1"
+      }
+    ]
+  }
+]'
+/>
+`}
+
+/>
